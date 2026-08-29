@@ -3,13 +3,13 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nexo — Automatización con IA para empresas" },
+      { title: "GAIA — Automatización con IA para empresas" },
       {
         name: "description",
         content:
-          "Nexo conecta tus herramientas y automatiza procesos con IA. Chatbots, análisis de datos e integraciones que corren solas 24/7.",
+          "GAIA conecta tus herramientas y automatiza procesos con IA. Chatbots, análisis de datos e integraciones que corren solas 24/7.",
       },
-      { property: "og:title", content: "Nexo — Automatización con IA para empresas" },
+      { property: "og:title", content: "GAIA — Automatización con IA para empresas" },
       {
         property: "og:description",
         content:
@@ -35,7 +35,7 @@ function Index() {
               N
             </span>
             <span className="font-display text-base font-semibold tracking-tight text-white">
-              Nexo
+              GAIA
             </span>
           </a>
           <nav className="hidden items-center gap-8 font-medium md:flex">
@@ -71,7 +71,7 @@ function Index() {
                 Automatiza el trabajo repetitivo con IA
               </h1>
               <p className="mt-6 max-w-[46ch] text-pretty font-body text-base leading-relaxed text-zinc-400 md:text-lg">
-                Nexo conecta tus herramientas y deja que los procesos fluyan solos. Menos clics,
+                GAIA conecta tus herramientas y deja que los procesos fluyan solos. Menos clics,
                 cero fricción y tu equipo enfocado en lo que importa.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -351,7 +351,7 @@ function Index() {
             <div className="lg:col-span-5">
               <figure className="rounded-[16px] bg-ink p-8 ring-1 ring-black/5">
                 <blockquote className="font-display text-pretty text-lg font-medium leading-snug text-white">
-                  “En tres meses Nexo eliminó el 80% de la carga administrativa de nuestro equipo de
+                  “En tres meses GAIA eliminó el 80% de la carga administrativa de nuestro equipo de
                   ventas.”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3">
@@ -414,7 +414,7 @@ function Index() {
               <span className="chrome-surface-tilt grid size-7 place-items-center rounded-md font-display text-sm font-semibold">
                 N
               </span>
-              <span className="font-display font-semibold text-white">Nexo</span>
+              <span className="font-display font-semibold text-white">GAIA</span>
             </div>
             <p className="mt-4 max-w-[30ch] text-pretty font-body text-sm leading-relaxed text-zinc-500">
               Automatización con IA para que tu equipo trabaje en lo que sí importa.
@@ -467,7 +467,7 @@ function Index() {
         </div>
         <div className="mx-auto max-w-6xl px-6 pb-10">
           <p className="font-body text-xs text-zinc-600">
-            © 2026 Nexo Labs. Hecho para equipos de LATAM.
+            © 2026 GAIA. Hecho para equipos de LATAM.
           </p>
         </div>
       </footer>

@@ -79,14 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nexo — Automatización con IA para empresas" },
+      { title: "GAIA — Automatización con IA para empresas" },
       {
         name: "description",
         content:
-          "Nexo conecta tus herramientas y automatiza procesos con IA. Chatbots, análisis de datos e integraciones que corren solas 24/7 para equipos de LATAM.",
+          "GAIA conecta tus herramientas y automatiza procesos con IA. Chatbots, análisis de datos e integraciones que corren solas 24/7 para equipos de LATAM.",
       },
-      { name: "author", content: "Nexo" },
-      { property: "og:title", content: "Nexo — Automatización con IA para empresas" },
+      { name: "author", content: "GAIA" },
+      { property: "og:title", content: "GAIA — Automatización con IA para empresas" },
       {
         property: "og:description",
         content:
@@ -97,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
