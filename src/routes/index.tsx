@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import gaiaLogo from "@/assets/gaia-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
