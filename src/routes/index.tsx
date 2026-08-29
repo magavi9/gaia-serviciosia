@@ -412,12 +412,14 @@ function Index() {
       <footer className="border-t border-white/10 bg-ink">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <div className="flex items-center gap-2">
-              <span className="chrome-surface-tilt grid size-7 place-items-center rounded-md font-display text-sm font-semibold">
-                N
-              </span>
-              <span className="font-display font-semibold text-white">GAIA</span>
-            </div>
+            <img
+              src={gaiaLogo.url}
+              alt="GAIA — IA a tu medida"
+              className="h-9 w-auto"
+              width={650}
+              height={176}
+            />
+            
             <p className="mt-4 max-w-[30ch] text-pretty font-body text-sm leading-relaxed text-zinc-500">
               Automatización con IA para que tu equipo trabaje en lo que sí importa.
             </p>
