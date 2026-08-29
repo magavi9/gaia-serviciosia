@@ -31,12 +31,13 @@ function Index() {
       <header className="text-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
           <a href="#" className="flex items-center gap-2 text-white">
-            <span className="chrome-surface-tilt grid size-7 place-items-center rounded-md font-display text-sm font-semibold">
-              N
-            </span>
-            <span className="font-display text-base font-semibold tracking-tight text-white">
-              GAIA
-            </span>
+            <img
+              src={gaiaLogo.url}
+              alt="GAIA — IA a tu medida"
+              className="h-8 w-auto"
+              width={650}
+              height={176}
+            />
           </a>
           <nav className="hidden items-center gap-8 font-medium md:flex">
             <a href="#servicios" className="transition-colors hover:text-white">
