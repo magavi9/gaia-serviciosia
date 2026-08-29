@@ -190,7 +190,7 @@ function Index() {
       </section>
 
       {/* SERVICIOS */}
-      <section id="servicios" className="bg-zinc-50">
+      <section id="servicios" className="bg-celeste-soft">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div className="max-w-[40ch]">
             <p className="font-display text-sm font-medium uppercase tracking-wide text-lime [filter:saturate(1.2)]">
@@ -305,7 +305,7 @@ function Index() {
       </section>
 
       {/* RESULTADOS */}
-      <section id="resultados" className="bg-zinc-50">
+      <section id="resultados" className="bg-celeste-soft">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
