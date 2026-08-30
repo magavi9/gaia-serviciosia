@@ -25,6 +25,81 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+type Project = {
+  index: string;
+  title: string;
+  description: string;
+  url: string;
+  tags: string[];
+  icon: React.ReactNode;
+};
+
+const PROJECTS: Project[] = [
+  {
+    index: "01",
+    title: "Ventas y Stock ABM",
+    description:
+      "Sistema de gestión integral para control de inventario, registro de ventas y administración de productos con panel interactivo en tiempo real.",
+    url: "https://preeminent-pegasus-899cf1.netlify.app/",
+    tags: ["Gestión Comercial", "Stock", "Automatización"],
+    icon: <span className="h-4 w-4 rounded-sm bg-ink" />,
+  },
+  {
+    index: "02",
+    title: "Catálogo Interactivo + Pedidos por WhatsApp",
+    description:
+      "Catálogo digital de productos con carrito de compras integrado y generación automática de pedidos listos para enviar directo a WhatsApp.",
+    url: "https://magavi9.github.io/CATALOGO-CON-PEDIDO-WHATSAPP/",
+    tags: ["E-commerce", "WhatsApp API", "Ventas"],
+    icon: <span className="h-4 w-4 rounded-md bg-ink" style={{ clipPath: "polygon(0 0, 100% 0, 80% 100%, 0 100%)" }} />,
+  },
+  {
+    index: "03",
+    title: "Sistema de Agenda de Turnos y Recordatorios",
+    description:
+      "Plataforma web de reservas online para gestión de citas, disponibilidad horaria y confirmación automática de turnos para profesionales y negocios.",
+    url: "https://moonlit-hotteok-01dff4.netlify.app",
+    tags: ["Reservas", "Turnos Online", "Gestión"],
+    icon: <span className="h-4 w-4 rounded-[3px] bg-ink" style={{ clipPath: "polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)" }} />,
+  },
+  {
+    index: "04",
+    title: "Sitio Web & Tienda Online Profesional",
+    description:
+      "Diseño web corporativo y de comercio electrónico optimizado para dispositivos móviles, catálogo destacado y presencia de marca sólida.",
+    url: "https://gentle-capybara-e8efd1.netlify.app/",
+    tags: ["Diseño Web", "Tienda Online", "UI/UX"],
+    icon: <span className="h-4 w-4 rounded-full bg-ink" />,
+  },
+  {
+    index: "05",
+    title: "Tarjeta Digital de Presentación Profesional",
+    description:
+      "Solución minimalista y moderna de contacto rápido en un solo enlace para compartir perfiles, redes, ubicación y servicios profesionales.",
+    url: "https://tarjeta-de-presentaci-n-digital-1.ai.studio",
+    tags: ["Branding", "Tarjeta Digital", "Contacto"],
+    icon: <span className="h-4 w-4 rounded-full bg-ink" style={{ clipPath: "polygon(50% 0, 100% 50%, 50% 100%, 0 50%)" }} />,
+  },
+  {
+    index: "06",
+    title: "Organizador Personal & Dashboard de Tareas y Finanzas",
+    description:
+      "Panel de productividad personal para seguimiento diario de tareas, control de pagos, compromisos y recordatorios clave.",
+    url: "https://cerulean-starlight-fb004c.netlify.app/",
+    tags: ["Productividad", "Organización", "Dashboard"],
+    icon: <span className="h-4 w-4 rounded-sm bg-ink" style={{ clipPath: "polygon(0 20%,100% 20%,100% 80%,0 80%)" }} />,
+  },
+  {
+    index: "07",
+    title: "Estudiabot — Tutor Pedagógico y Active Recall",
+    description:
+      "Asistente educativo potenciado con IA para generación de esquemas conceptuales, tutoría guiada, método Pomodoro y exportación de fichas de estudio.",
+    url: "https://estudiabot-tutor-pedag-gico-y-active-recall.ai.studio",
+    tags: ["Inteligencia Artificial", "Educación", "EdTech"],
+    icon: <span className="h-4 w-4 rounded-md bg-ink" style={{ clipPath: "polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%)" }} />,
+  },
+];
+
 function Index() {
   return (
     <div className="min-h-screen bg-ink font-body text-zinc-300">
