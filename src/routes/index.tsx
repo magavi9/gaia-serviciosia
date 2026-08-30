@@ -189,65 +189,73 @@ function Index() {
         </div>
       </section>
 
-      {/* SERVICIOS */}
+      {/* PROYECTOS */}
       <section id="servicios" className="bg-celeste-soft">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <div className="max-w-[40ch]">
+          <div className="max-w-[44ch]">
             <p className="font-display text-sm font-medium uppercase tracking-wide text-lime [filter:saturate(1.2)]">
-              Servicios
+              Proyectos
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-ink text-balance md:text-4xl">
-              Cuatro flujos que se encienden solos
+              Soluciones digitales listas para tu negocio
             </h2>
+            <p className="mt-4 font-body text-base leading-relaxed text-zinc-500">
+              Cada proyecto está en vivo. Toca “Ver Demo en Vivo” para probarlo en una pestaña nueva.
+            </p>
           </div>
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <div className="group rounded-[16px] bg-white p-6 ring-1 ring-black/5 transition-transform hover:-translate-y-1">
-              <span className="chrome-surface-tilt grid size-11 place-items-center rounded-[10px]">
-                <span className="h-4 w-4 rounded-sm bg-ink"></span>
-              </span>
-              <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                Automatización de procesos
-              </h3>
-              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-zinc-500">
-                Flujos entre tus sistemas que corren sin supervisión, de extremo a extremo.
-              </p>
-            </div>
-            <div className="group rounded-[16px] bg-white p-6 ring-1 ring-black/5 transition-transform hover:-translate-y-1">
-              <span className="chrome-surface-tilt grid size-11 place-items-center rounded-[10px]">
-                <span className="h-4 w-4 rounded-full bg-ink"></span>
-              </span>
-              <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                Chatbots con IA
-              </h3>
-              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-zinc-500">
-                Atención que resuelve y deriva a tu equipo solo cuando hace falta.
-              </p>
-            </div>
-            <div className="group rounded-[16px] bg-white p-6 ring-1 ring-black/5 transition-transform hover:-translate-y-1">
-              <span className="chrome-surface-tilt grid size-11 place-items-center rounded-[10px]">
-                <span className="h-4 w-4 rounded-[2px] bg-ink"></span>
-              </span>
-              <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                Análisis de datos
-              </h3>
-              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-zinc-500">
-                Métricas y alertas en tiempo real, listas para decidir con calma.
-              </p>
-            </div>
-            <div className="group rounded-[16px] bg-white p-6 ring-1 ring-black/5 transition-transform hover:-translate-y-1">
-              <span className="chrome-surface-tilt grid size-11 place-items-center rounded-[10px]">
-                <span
-                  className="h-4 w-4 rounded-md bg-ink"
-                  style={{ clipPath: "polygon(50% 0,100% 50%,50% 100%,0 50%)" }}
-                ></span>
-              </span>
-              <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                Integraciones
-              </h3>
-              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-zinc-500">
-                Conectamos CRM, ERP y más con API estables y bien documentadas.
-              </p>
-            </div>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {PROJECTS.map((p) => (
+              <article
+                key={p.title}
+                className="group flex flex-col rounded-[16px] bg-white p-6 ring-1 ring-black/5 transition-transform hover:-translate-y-1"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="chrome-surface-tilt grid size-11 place-items-center rounded-[10px]">
+                    {p.icon}
+                  </span>
+                  <span className="font-display text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                    {p.index}
+                  </span>
+                </div>
+                <h3 className="mt-5 font-display text-lg font-semibold text-ink">
+                  {p.title}
+                </h3>
+                <p className="mt-2 flex-1 text-pretty font-body text-sm leading-relaxed text-zinc-500">
+                  {p.description}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full bg-ink/5 px-2.5 py-1 text-[11px] font-medium text-ink/70 ring-1 ring-ink/10"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="chrome-surface mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold ring-1 ring-black/10 transition-transform hover:-translate-y-0.5"
+                >
+                  Ver Demo en Vivo
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="size-4"
+                  >
+                    <path d="M7 17 17 7" />
+                    <path d="M8 7h9v9" />
+                  </svg>
+                </a>
+              </article>
+            ))}
           </div>
         </div>
       </section>
