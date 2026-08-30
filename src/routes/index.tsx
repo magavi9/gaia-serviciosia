@@ -458,22 +458,32 @@ function Index() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CONTACTO */}
       <section id="cta" className="bg-ink">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div
             className="rounded-[24px] p-10 text-center ring-1 ring-white/10 md:p-14"
             style={{ background: "linear-gradient(135deg,#152144,#0a1226)" }}
           >
-            <h2 className="mx-auto max-w-[18ch] font-display text-3xl font-semibold leading-tight tracking-[-0.02em] text-white text-balance md:text-5xl">
-              Listo para que tus procesos fluyan solos
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime">
+              Contacto
+            </p>
+            <h2 className="mx-auto mt-3 max-w-[18ch] font-display text-3xl font-semibold leading-tight tracking-[-0.02em] text-white text-balance md:text-5xl">
+              Solicitá tu presupuesto o una demostración
             </h2>
             <p className="mx-auto mt-5 max-w-[46ch] text-pretty font-body text-base leading-relaxed text-zinc-400 md:text-lg">
-              Cuéntanos tu reto y te mostramos un flujo automatizado funcionando en 48 horas.
+              Cuéntanos tu reto y te mostramos un flujo automatizado funcionando en 48 horas. Respondemos en menos de un día hábil.
             </p>
-            <form className="mx-auto mt-9 flex max-w-md flex-col justify-center gap-3 sm:flex-row">
+            <form
+              className="mx-auto mt-9 flex max-w-md flex-col justify-center gap-3 sm:flex-row"
+              action="https://wa.me/5490000000000"
+              method="get"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <input
                 type="email"
+                name="text"
                 placeholder="tu@empresa.com"
                 className="flex-1 rounded-full bg-white/5 px-5 py-3 text-sm text-white ring-1 ring-white/15 placeholder:text-zinc-500 focus:outline-none focus:ring-lime/60"
               />
@@ -481,10 +491,33 @@ function Index() {
                 type="submit"
                 className="chrome-surface rounded-full px-6 py-3 text-sm font-semibold ring-1 ring-black/10 transition-transform hover:-translate-y-0.5"
               >
-                Agendar demo
+                Solicitar demo
               </button>
             </form>
-            <p className="mt-5 font-body text-xs text-zinc-500">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-body text-sm text-zinc-400">
+              <a
+                href="https://wa.me/5490000000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors hover:text-white"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="size-4 text-lime">
+                  <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.737-.98zm6.454-9.885c-.079-.133-.29-.213-.606-.373-.316-.158-1.868-.922-2.158-1.028-.29-.105-.502-.158-.713.158-.211.316-.817 1.028-1.002 1.238-.185.211-.369.237-.685.079-.316-.158-1.334-.492-2.54-1.568-.939-.838-1.572-1.873-1.756-2.189-.185-.316-.02-.487.139-.645.143-.142.316-.37.474-.556.158-.185.211-.316.316-.527.105-.211.053-.396-.026-.554-.079-.158-.713-1.718-.976-2.353-.258-.619-.52-.535-.713-.545l-.606-.011c-.211 0-.554.079-.844.395-.29.316-1.108 1.082-1.108 2.638 0 1.556 1.134 3.06 1.292 3.271.158.211 2.231 3.409 5.407 4.783.755.326 1.344.521 1.803.667.757.241 1.446.207 1.991.125.608-.091 1.868-.764 2.132-1.502.264-.738.264-1.37.185-1.502z" />
+                </svg>
+                WhatsApp directo
+              </a>
+              <a
+                href="mailto:hola@gaiaservicios.com"
+                className="inline-flex items-center gap-2 transition-colors hover:text-white"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4 text-sky">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m2 7 10 6 10-6" />
+                </svg>
+                hola@gaiaservicios.com
+              </a>
+            </div>
+            <p className="mt-6 font-body text-xs text-zinc-500">
               Sin tarjeta. Respuesta en menos de un día hábil.
             </p>
           </div>
