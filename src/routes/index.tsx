@@ -32,7 +32,7 @@ type Project = {
   description: string;
   url: string;
   tags: string[];
-  icon: React.ReactNode;
+  icon: ReactNode;
 };
 
 const PROJECTS: Project[] = [
