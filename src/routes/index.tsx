@@ -44,6 +44,12 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+type GuideMode = {
+  label: string;
+  title: string;
+  steps: string[];
+};
+
 type Project = {
   index: string;
   title: string;
@@ -52,6 +58,11 @@ type Project = {
   technologies: string[];
   category: Category;
   cover: string;
+  guide: {
+    title: string;
+    steps: string[];
+    modes?: GuideMode[];
+  };
 };
 
 type Category = "Gestión & Negocios" | "E-commerce" | "Productividad";
