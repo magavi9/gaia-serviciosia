@@ -44,6 +44,12 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+type GuideMode = {
+  label: string;
+  title: string;
+  steps: string[];
+};
+
 type Project = {
   index: string;
   title: string;
@@ -52,6 +58,11 @@ type Project = {
   technologies: string[];
   category: Category;
   cover: string;
+  guide: {
+    title: string;
+    steps: string[];
+    modes?: GuideMode[];
+  };
 };
 
 type Category = "Gestión & Negocios" | "E-commerce" | "Productividad";
@@ -69,6 +80,15 @@ const PROJECTS: Project[] = [
     technologies: ["Gestión Comercial", "Stock", "Automatización"],
     category: "Gestión & Negocios",
     cover: ventasStockCover,
+    guide: {
+      title: "💡 Probá el sistema de stock y caja",
+      steps: [
+        "Andá a la Sección Registrar Venta: seleccioná un producto en la lista desplegable.",
+        "Elegí Cantidad (2 o 3) y Agregalo al Carrito, observa que pasa de 0 a lo que seleccionaste.",
+        "Finalizá la venta y verás el monto a cobrar.",
+        "En inventario, a la derecha comprobá el descuento automático de unidades en el stock.",
+      ],
+    },
   },
   {
     index: "02",
@@ -79,6 +99,14 @@ const PROJECTS: Project[] = [
     technologies: ["E-commerce", "WhatsApp API", "Ventas"],
     category: "E-commerce",
     cover: catalogoWhatsappCover,
+    guide: {
+      title: "💡 Hacé una simulación de compra",
+      steps: [
+        "Sumá productos con '+ Agregar al Pedido'.",
+        "Mirá el carrito con el cálculo de precios.",
+        "Tocá 'Enviar Pedido' para ver el mensaje formateado de WhatsApp.",
+      ],
+    },
   },
   {
     index: "03",
@@ -89,6 +117,36 @@ const PROJECTS: Project[] = [
     technologies: ["Reservas", "Turnos Online", "Gestión"],
     category: "Gestión & Negocios",
     cover: agendaTurnosCover,
+    guide: {
+      title: "💡 Probá reservar un turno",
+      steps: [
+        "Seleccioná un profesional o servicio.",
+        "Elegí fecha y horario disponible.",
+        "Completá tus datos.",
+        "Confirmá tu reserva para ver la confirmación inmediata.",
+      ],
+      modes: [
+        {
+          label: "Modo Paciente",
+          title: "💡 Probá reservar un turno",
+          steps: [
+            "Seleccioná un profesional o servicio.",
+            "Elegí fecha y horario disponible.",
+            "Completá tus datos.",
+            "Confirmá tu reserva para ver la confirmación inmediata.",
+          ],
+        },
+        {
+          label: "Modo Profesional",
+          title: "💡 ¿Cómo gestionar turnos?",
+          steps: [
+            "Visualizá la grilla diaria con pacientes agendados. Verás quién confirmó, quiénes están pendientes y los que fueron cancelados.",
+            "Bloqueá horarios o días no disponibles con un clic.",
+            "Configurá la duración de tus servicios y descansos sin complicaciones técnicas.",
+          ],
+        },
+      ],
+    },
   },
   {
     index: "04",
@@ -99,6 +157,14 @@ const PROJECTS: Project[] = [
     technologies: ["Diseño Web", "Tienda Online", "UI/UX"],
     category: "E-commerce",
     cover: tiendaWebCover,
+    guide: {
+      title: "💡 Recorré la tienda online",
+      steps: [
+        "Explorá el catálogo destacado en la página principal.",
+        "Abrí un producto para ver su ficha y detalle completo.",
+        "Navegá por las categorías y revisá el carrito de compras.",
+      ],
+    },
   },
   {
     index: "05",
@@ -109,6 +175,14 @@ const PROJECTS: Project[] = [
     technologies: ["Branding", "Tarjeta Digital", "Contacto"],
     category: "Gestión & Negocios",
     cover: tarjetaDigitalCover,
+    guide: {
+      title: "💡 Probá la tarjeta digital",
+      steps: [
+        "Tocá los botones de contacto: WhatsApp, mail y redes sociales.",
+        "Explorá las secciones de servicios y ubicación en el mapa.",
+        "Probá el botón de compartir para enviar tu tarjeta en un enlace.",
+      ],
+    },
   },
   {
     index: "06",
@@ -119,6 +193,17 @@ const PROJECTS: Project[] = [
     technologies: ["Productividad", "Organización", "Dashboard"],
     category: "Productividad",
     cover: organizadorPersonalCover,
+    guide: {
+      title: "💡 ¿Cómo probar la demo?",
+      steps: [
+        "Creá una tarea con '+ Nueva Actividad', ponele nombre, elegí la Categoría y demás datos.",
+        "Tocá las tarjetas métricas para filtrar automáticamente.",
+        "Marcá una tarea como completada para ver la actualización en vivo.",
+        "Con el botón Editar podés corregir o cambiar la tarea.",
+        "Con Eliminar verás cómo desaparece.",
+        "Si tocas el círculo a la izquierda del título de la tarea, la marca como hecha.",
+      ],
+    },
   },
   {
     index: "07",
@@ -129,8 +214,70 @@ const PROJECTS: Project[] = [
     technologies: ["Inteligencia Artificial", "Educación", "EdTech"],
     category: "Productividad",
     cover: estudiabotCover,
+    guide: {
+      title: "💡 ¿Cómo probar la demo?",
+      steps: [
+        "Pegá un texto o apunte de estudio en el recuadro y tocá en Generar Material de Repaso.",
+        "Respondé lo que te pregunta el tutor.",
+        "Recibí tu evaluación pedagógica con Active Recall y la siguiente tarjeta de repaso.",
+      ],
+    },
   },
 ];
+
+function GuideSteps({ title, steps }: { title: string; steps: string[] }) {
+  return (
+    <div className="rounded-[12px] bg-white/[0.04] p-5 ring-1 ring-lime/25">
+      <p className="font-display text-sm font-semibold text-lime">{title}</p>
+      <ol className="mt-4 space-y-3">
+        {steps.map((step, i) => (
+          <li key={i} className="flex gap-3">
+            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-lime/15 text-xs font-bold text-lime ring-1 ring-lime/40">
+              {i + 1}
+            </span>
+            <span className="text-sm leading-relaxed text-zinc-200">{step}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+function GuideSection({ guide }: { guide: Project["guide"] }) {
+  const [activeMode, setActiveMode] = useState(0);
+  const hasModes = Boolean(guide.modes && guide.modes.length > 0);
+  const current = hasModes ? guide.modes![activeMode]! : { title: guide.title, steps: guide.steps };
+
+  return (
+    <div className="mt-6">
+      <p className="font-display text-[11px] font-semibold uppercase tracking-wide text-sky">
+        Guía de Prueba Rápida (Paso a Paso)
+      </p>
+      {hasModes && (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {guide.modes!.map((mode, i) => (
+            <button
+              key={mode.label}
+              type="button"
+              onClick={() => setActiveMode(i)}
+              className={cn(
+                "rounded-full px-3 py-1 text-xs font-semibold ring-1 transition-colors",
+                activeMode === i
+                  ? "bg-lime text-ink ring-lime"
+                  : "bg-white/5 text-zinc-300 ring-white/10 hover:bg-white/10",
+              )}
+            >
+              {mode.label}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="mt-3">
+        <GuideSteps title={current.title} steps={current.steps} />
+      </div>
+    </div>
+  );
+}
 
 function ProjectsGrid() {
   const [activeFilter, setActiveFilter] = useState<Filter>("Todos");
@@ -233,9 +380,10 @@ function ProjectsGrid() {
                           </span>
                         ))}
                       </div>
+                      <GuideSection guide={project.guide} />
                       <Button asChild className="chrome-surface mt-6 h-11 w-full rounded-md shadow-none hover:opacity-90">
                         <a href={project.url} target="_blank" rel="noopener noreferrer">
-                          Probar Demo <ArrowUpRight />
+                          🚀 Abrir Demo en Vivo <ArrowUpRight />
                         </a>
                       </Button>
                     </div>
