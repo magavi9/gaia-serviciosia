@@ -80,6 +80,15 @@ const PROJECTS: Project[] = [
     technologies: ["Gestión Comercial", "Stock", "Automatización"],
     category: "Gestión & Negocios",
     cover: ventasStockCover,
+    guide: {
+      title: "💡 Probá el sistema de stock y caja",
+      steps: [
+        "Andá a la Sección Registrar Venta: seleccioná un producto en la lista desplegable.",
+        "Elegí Cantidad (2 o 3) y Agregalo al Carrito, observa que pasa de 0 a lo que seleccionaste.",
+        "Finalizá la venta y verás el monto a cobrar.",
+        "En inventario, a la derecha comprobá el descuento automático de unidades en el stock.",
+      ],
+    },
   },
   {
     index: "02",
