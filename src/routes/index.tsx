@@ -245,8 +245,8 @@ function GuideSteps({ title, steps }: { title: string; steps: string[] }) {
 
 function GuideSection({ guide }: { guide: Project["guide"] }) {
   const [activeMode, setActiveMode] = useState(0);
-  const hasModes = guide.modes && guide.modes.length > 0;
-  const current = hasModes ? guide.modes![activeMode] : { title: guide.title, steps: guide.steps };
+  const hasModes = Boolean(guide.modes && guide.modes.length > 0);
+  const current = hasModes ? guide.modes![activeMode]! : { title: guide.title, steps: guide.steps };
 
   return (
     <div className="mt-6">
