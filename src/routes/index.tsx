@@ -1,6 +1,24 @@
-import type { ReactNode } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowUpRight, Eye, Mail, MessageCircle } from "lucide-react";
 import gaiaLogo from "@/assets/gaia-logo.png.asset.json";
+import ventasStockCover from "@/assets/projects/ventas-stock.png";
+import catalogoWhatsappCover from "@/assets/projects/catalogo-whatsapp.png";
+import agendaTurnosCover from "@/assets/projects/agenda-turnos.png";
+import tiendaWebCover from "@/assets/projects/tienda-web.png";
+import tarjetaDigitalCover from "@/assets/projects/tarjeta-digital.png";
+import organizadorPersonalCover from "@/assets/projects/organizador-personal.png";
+import estudiabotCover from "@/assets/projects/estudiabot.png";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,9 +49,15 @@ type Project = {
   title: string;
   description: string;
   url: string;
-  tags: string[];
-  icon: ReactNode;
+  technologies: string[];
+  category: Category;
+  cover: string;
 };
+
+type Category = "Gestión & Negocios" | "E-commerce" | "Productividad";
+type Filter = "Todos" | Category;
+
+const FILTERS: Filter[] = ["Todos", "Gestión & Negocios", "E-commerce", "Productividad"];
 
 const PROJECTS: Project[] = [
   {
@@ -42,8 +66,9 @@ const PROJECTS: Project[] = [
     description:
       "Sistema de gestión integral para control de inventario, registro de ventas y administración de productos con panel interactivo en tiempo real.",
     url: "https://preeminent-pegasus-899cf1.netlify.app/",
-    tags: ["Gestión Comercial", "Stock", "Automatización"],
-    icon: <span className="h-4 w-4 rounded-sm bg-ink" />,
+    technologies: ["Gestión Comercial", "Stock", "Automatización"],
+    category: "Gestión & Negocios",
+    cover: ventasStockCover,
   },
   {
     index: "02",
@@ -51,8 +76,9 @@ const PROJECTS: Project[] = [
     description:
       "Catálogo digital de productos con carrito de compras integrado y generación automática de pedidos listos para enviar directo a WhatsApp.",
     url: "https://magavi9.github.io/CATALOGO-CON-PEDIDO-WHATSAPP/",
-    tags: ["E-commerce", "WhatsApp API", "Ventas"],
-    icon: <span className="h-4 w-4 rounded-md bg-ink" style={{ clipPath: "polygon(0 0, 100% 0, 80% 100%, 0 100%)" }} />,
+    technologies: ["E-commerce", "WhatsApp API", "Ventas"],
+    category: "E-commerce",
+    cover: catalogoWhatsappCover,
   },
   {
     index: "03",
@@ -60,8 +86,9 @@ const PROJECTS: Project[] = [
     description:
       "Plataforma web de reservas online para gestión de citas, disponibilidad horaria y confirmación automática de turnos para profesionales y negocios.",
     url: "https://moonlit-hotteok-01dff4.netlify.app",
-    tags: ["Reservas", "Turnos Online", "Gestión"],
-    icon: <span className="h-4 w-4 rounded-[3px] bg-ink" style={{ clipPath: "polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)" }} />,
+    technologies: ["Reservas", "Turnos Online", "Gestión"],
+    category: "Gestión & Negocios",
+    cover: agendaTurnosCover,
   },
   {
     index: "04",
@@ -69,8 +96,9 @@ const PROJECTS: Project[] = [
     description:
       "Diseño web corporativo y de comercio electrónico optimizado para dispositivos móviles, catálogo destacado y presencia de marca sólida.",
     url: "https://gentle-capybara-e8efd1.netlify.app/",
-    tags: ["Diseño Web", "Tienda Online", "UI/UX"],
-    icon: <span className="h-4 w-4 rounded-full bg-ink" />,
+    technologies: ["Diseño Web", "Tienda Online", "UI/UX"],
+    category: "E-commerce",
+    cover: tiendaWebCover,
   },
   {
     index: "05",
@@ -78,17 +106,19 @@ const PROJECTS: Project[] = [
     description:
       "Solución minimalista y moderna de contacto rápido en un solo enlace para compartir perfiles, redes, ubicación y servicios profesionales.",
     url: "https://tarjeta-de-presentaci-n-digital-1.ai.studio",
-    tags: ["Branding", "Tarjeta Digital", "Contacto"],
-    icon: <span className="h-4 w-4 rounded-full bg-ink" style={{ clipPath: "polygon(50% 0, 100% 50%, 50% 100%, 0 50%)" }} />,
+    technologies: ["Branding", "Tarjeta Digital", "Contacto"],
+    category: "Gestión & Negocios",
+    cover: tarjetaDigitalCover,
   },
   {
     index: "06",
-    title: "Organizador Personal & Dashboard de Tareas y Finanzas",
+    title: "Organizador Personal & Dashboard",
     description:
       "Panel de productividad personal para seguimiento diario de tareas, control de pagos, compromisos y recordatorios clave.",
     url: "https://cerulean-starlight-fb004c.netlify.app/",
-    tags: ["Productividad", "Organización", "Dashboard"],
-    icon: <span className="h-4 w-4 rounded-sm bg-ink" style={{ clipPath: "polygon(0 20%,100% 20%,100% 80%,0 80%)" }} />,
+    technologies: ["Productividad", "Organización", "Dashboard"],
+    category: "Productividad",
+    cover: organizadorPersonalCover,
   },
   {
     index: "07",
@@ -96,10 +126,129 @@ const PROJECTS: Project[] = [
     description:
       "Asistente educativo potenciado con IA para generación de esquemas conceptuales, tutoría guiada, método Pomodoro y exportación de fichas de estudio.",
     url: "https://estudiabot-tutor-pedag-gico-y-active-recall.ai.studio",
-    tags: ["Inteligencia Artificial", "Educación", "EdTech"],
-    icon: <span className="h-4 w-4 rounded-md bg-ink" style={{ clipPath: "polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%)" }} />,
+    technologies: ["Inteligencia Artificial", "Educación", "EdTech"],
+    category: "Productividad",
+    cover: estudiabotCover,
   },
 ];
+
+function ProjectsGrid() {
+  const [activeFilter, setActiveFilter] = useState<Filter>("Todos");
+  const visibleProjects =
+    activeFilter === "Todos" ? PROJECTS : PROJECTS.filter((project) => project.category === activeFilter);
+
+  return (
+    <>
+      <div className="mt-8 flex flex-wrap gap-2" aria-label="Filtrar proyectos por categoría">
+        {FILTERS.map((filter) => (
+          <Button
+            key={filter}
+            type="button"
+            variant="outline"
+            aria-pressed={activeFilter === filter}
+            onClick={() => setActiveFilter(filter)}
+            className={cn(
+              "h-9 rounded-full border-ink/15 bg-white/45 px-4 text-ink shadow-none hover:bg-white/80 hover:text-ink",
+              activeFilter === filter && "border-ink bg-ink text-white hover:bg-ink hover:text-white",
+            )}
+          >
+            {filter}
+          </Button>
+        ))}
+      </div>
+
+      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {visibleProjects.map((project) => (
+          <article
+            key={project.title}
+            className="group flex min-w-0 flex-col overflow-hidden rounded-[8px] bg-white ring-1 ring-ink/10 transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+          >
+            <div className="relative aspect-[16/10] overflow-hidden bg-ink2">
+              <img
+                src={project.cover}
+                alt={`Vista previa de ${project.title}`}
+                width={1400}
+                height={900}
+                loading="lazy"
+                className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+              />
+              <span className="absolute left-3 top-3 rounded-full bg-ink/90 px-3 py-1 text-[10px] font-semibold uppercase text-white ring-1 ring-white/15">
+                {project.category}
+              </span>
+              <span className="absolute right-3 top-3 font-display text-xs font-semibold text-white drop-shadow-md">
+                {project.index}
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col p-5">
+              <h3 className="font-display text-lg font-semibold text-ink">{project.title}</h3>
+              <p className="mt-2 flex-1 text-pretty font-body text-sm leading-relaxed text-zinc-600">
+                {project.description}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {project.technologies.map((technology) => (
+                  <span
+                    key={technology}
+                    className="rounded-full bg-celeste-soft px-2.5 py-1 text-[11px] font-semibold text-ink ring-1 ring-ink/10"
+                  >
+                    {technology}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-6 grid grid-cols-2 gap-2">
+                <Button asChild className="h-10 rounded-md bg-ink text-white shadow-none hover:bg-ink/90">
+                  <a href={project.url} target="_blank" rel="noopener noreferrer">
+                    Probar Demo <ArrowUpRight />
+                  </a>
+                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="h-10 rounded-md border-ink/20 bg-transparent text-ink shadow-none hover:bg-celeste-soft hover:text-ink"
+                    >
+                      Ver Detalles <Eye />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto border-white/10 bg-ink p-0 text-white sm:rounded-[8px]">
+                    <img
+                      src={project.cover}
+                      alt={`Vista detallada de ${project.title}`}
+                      width={1400}
+                      height={900}
+                      className="aspect-[16/9] w-full object-cover object-top"
+                    />
+                    <div className="p-6 pt-2">
+                      <DialogHeader>
+                        <p className="font-display text-xs font-semibold uppercase text-lime">{project.category}</p>
+                        <DialogTitle className="font-display text-2xl text-white">{project.title}</DialogTitle>
+                        <DialogDescription className="pt-2 text-base leading-relaxed text-zinc-400">
+                          {project.description}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {project.technologies.map((technology) => (
+                          <span key={technology} className="rounded-full bg-white/5 px-3 py-1 text-xs text-sky ring-1 ring-white/10">
+                            {technology}
+                          </span>
+                        ))}
+                      </div>
+                      <Button asChild className="chrome-surface mt-6 h-11 w-full rounded-md shadow-none hover:opacity-90">
+                        <a href={project.url} target="_blank" rel="noopener noreferrer">
+                          Probar Demo <ArrowUpRight />
+                        </a>
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </>
+  );
+}
 
 function Index() {
   return (
@@ -276,63 +425,10 @@ function Index() {
               Soluciones digitales listas para tu negocio
             </h2>
             <p className="mt-4 font-body text-base leading-relaxed text-zinc-500">
-              Cada proyecto está en vivo. Toca “Ver Demo en Vivo” para probarlo en una pestaña nueva.
+              Explorá una selección de soluciones creadas para simplificar operaciones, vender más y organizar mejor el trabajo.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {PROJECTS.map((p) => (
-              <article
-                key={p.title}
-                className="group flex flex-col rounded-[16px] bg-white p-6 ring-1 ring-black/5 transition-transform hover:-translate-y-1"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="chrome-surface-tilt grid size-11 place-items-center rounded-[10px]">
-                    {p.icon}
-                  </span>
-                  <span className="font-display text-xs font-semibold uppercase tracking-wide text-zinc-400">
-                    {p.index}
-                  </span>
-                </div>
-                <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                  {p.title}
-                </h3>
-                <p className="mt-2 flex-1 text-pretty font-body text-sm leading-relaxed text-zinc-500">
-                  {p.description}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full bg-ink/5 px-2.5 py-1 text-[11px] font-medium text-ink/70 ring-1 ring-ink/10"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="chrome-surface mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold ring-1 ring-black/10 transition-transform hover:-translate-y-0.5"
-                >
-                  Ver Demo en Vivo
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="size-4"
-                  >
-                    <path d="M7 17 17 7" />
-                    <path d="M8 7h9v9" />
-                  </svg>
-                </a>
-              </article>
-            ))}
-          </div>
+          <ProjectsGrid />
         </div>
       </section>
 
@@ -477,7 +573,7 @@ function Index() {
             </p>
             <form
               className="mx-auto mt-9 flex max-w-md flex-col justify-center gap-3 sm:flex-row"
-              action="https://wa.me/5490000000000"
+               action="https://wa.me/5493434705750"
               method="get"
               target="_blank"
               rel="noopener noreferrer"
@@ -497,25 +593,20 @@ function Index() {
             </form>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-body text-sm text-zinc-400">
               <a
-                href="https://wa.me/5490000000000"
+                 href="https://wa.me/5493434705750"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 transition-colors hover:text-white"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="size-4 text-lime">
-                  <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.737-.98zm6.454-9.885c-.079-.133-.29-.213-.606-.373-.316-.158-1.868-.922-2.158-1.028-.29-.105-.502-.158-.713.158-.211.316-.817 1.028-1.002 1.238-.185.211-.369.237-.685.079-.316-.158-1.334-.492-2.54-1.568-.939-.838-1.572-1.873-1.756-2.189-.185-.316-.02-.487.139-.645.143-.142.316-.37.474-.556.158-.185.211-.316.316-.527.105-.211.053-.396-.026-.554-.079-.158-.713-1.718-.976-2.353-.258-.619-.52-.535-.713-.545l-.606-.011c-.211 0-.554.079-.844.395-.29.316-1.108 1.082-1.108 2.638 0 1.556 1.134 3.06 1.292 3.271.158.211 2.231 3.409 5.407 4.783.755.326 1.344.521 1.803.667.757.241 1.446.207 1.991.125.608-.091 1.868-.764 2.132-1.502.264-.738.264-1.37.185-1.502z" />
-                </svg>
-                WhatsApp directo
+                 <MessageCircle className="size-4 text-lime" />
+                 +54 9 343 470-5750
               </a>
               <a
-                href="mailto:hola@gaiaservicios.com"
+                 href="mailto:gama.70.maga@gmail.com"
                 className="inline-flex items-center gap-2 transition-colors hover:text-white"
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4 text-sky">
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="m2 7 10 6 10-6" />
-                </svg>
-                hola@gaiaservicios.com
+                 <Mail className="size-4 text-sky" />
+                 gama.70.maga@gmail.com
               </a>
             </div>
             <p className="mt-6 font-body text-xs text-zinc-500">
