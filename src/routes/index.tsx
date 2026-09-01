@@ -626,69 +626,46 @@ function Index() {
       {/* RESULTADOS */}
       <section id="resultados" className="bg-celeste-soft">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <div className="grid items-center gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <p className="font-display text-sm font-medium uppercase tracking-wide text-lime [filter:saturate(1.2)]">
-                Resultados
-              </p>
-              <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-ink text-balance md:text-4xl">
-                Números que reflejan el ahorro real
-              </h2>
-              <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-12">
-                <div>
-                  <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
-                    85%
-                  </p>
-                  <p className="mt-3 font-body text-sm text-zinc-500">
-                    menos trabajo manual en operaciones clave
-                  </p>
-                </div>
-                <div>
-                  <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
-                    4.2×
-                  </p>
-                  <p className="mt-3 font-body text-sm text-zinc-500">
-                    más rápido el ciclo de cada proceso
-                  </p>
-                </div>
-                <div>
-                  <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
-                    30k
-                  </p>
-                  <p className="mt-3 font-body text-sm text-zinc-500">
-                    tareas automatizadas cada mes
-                  </p>
-                </div>
-                <div>
-                  <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
-                    99.9%
-                  </p>
-                  <p className="mt-3 font-body text-sm text-zinc-500">
-                    de disponibilidad en producción
-                  </p>
-                </div>
+          <div>
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime [filter:saturate(1.2)]">
+              Resultados
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-ink text-balance md:text-4xl">
+              Números que reflejan el ahorro real
+            </h2>
+            <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
+              <div>
+                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
+                  85%
+                </p>
+                <p className="mt-3 font-body text-sm text-zinc-500">
+                  menos trabajo manual en operaciones clave
+                </p>
               </div>
-            </div>
-            <div className="lg:col-span-5">
-              <figure className="rounded-[16px] bg-ink p-8 ring-1 ring-black/5">
-                <blockquote className="font-display text-pretty text-lg font-medium leading-snug text-white">
-                  “En tres meses GAIA eliminó el 80% de la carga administrativa de nuestro equipo de
-                  ventas.”
-                </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3">
-                  <span className="chrome-surface-tilt grid size-10 place-items-center rounded-full font-display text-sm font-semibold">
-                    MV
-                  </span>
-                  <span>
-                    <span className="block font-display text-sm font-semibold text-white">
-                      Marina Villarroel
-                    </span>
-                    <span className="block font-body text-sm text-zinc-500">
-                      Directora de Operaciones · Vectoria
-                    </span>
-                  </span>
-                </figcaption>
-              </figure>
+              <div>
+                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
+                  4.2×
+                </p>
+                <p className="mt-3 font-body text-sm text-zinc-500">
+                  más rápido el ciclo de cada proceso
+                </p>
+              </div>
+              <div>
+                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
+                  30k
+                </p>
+                <p className="mt-3 font-body text-sm text-zinc-500">
+                  tareas automatizadas cada mes
+                </p>
+              </div>
+              <div>
+                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
+                  99.9%
+                </p>
+                <p className="mt-3 font-body text-sm text-zinc-500">
+                  de disponibilidad en producción
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -818,7 +795,7 @@ function Index() {
         </div>
         <div className="mx-auto max-w-6xl px-6 pb-10">
           <p className="font-body text-xs text-zinc-600">
-            © 2026 GAIA. Hecho para equipos de LATAM.
+            © 2026 GAIA. Todos los derechos reservados.
           </p>
         </div>
       </footer>
