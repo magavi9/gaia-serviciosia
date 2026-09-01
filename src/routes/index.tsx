@@ -473,16 +473,7 @@ function Index() {
                   Ver cómo funciona
                 </a>
               </div>
-              <p className="mt-10 text-xs font-medium uppercase tracking-wide text-zinc-500">
-                Impulsan sus operaciones
-              </p>
-              <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-display font-medium text-zinc-500">
-                <span>Grupo Andino</span>
-                <span>Vectoria</span>
-                <span>Cordillera</span>
-                <span>Manantial</span>
-                <span>Ruta Sur</span>
-              </div>
+                   
             </div>
 
             {/* FLOW PANEL */}
