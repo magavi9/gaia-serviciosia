@@ -246,11 +246,11 @@ const PROJECTS: Project[] = [
   },
 ];
 
-function GuideSteps({ title, steps }: { title: string; steps: string[] }) {
+function GuideSteps({ title, steps }: { title: string | null; steps: string[] }) {
   return (
     <div className="rounded-xl bg-white/[0.04] p-5 ring-1 ring-slate-800">
-      <p className="font-display text-sm font-semibold text-brand">{title}</p>
-      <ol className="mt-4 space-y-3">
+      {title && <p className="font-display text-sm font-semibold text-brand">{title}</p>}
+      <ol className="space-y-3 [&:not(:first-child)]:mt-4">
         {steps.map((step, i) => (
           <li key={i} className="flex gap-3">
             <span className="grid size-6 shrink-0 place-items-center rounded-full bg-brand/15 text-xs font-bold text-brand ring-1 ring-brand/40">
@@ -317,7 +317,7 @@ function GuideSection({ guide }: { guide: Project["guide"] }) {
         </div>
       )}
       <div className="mt-3">
-        <GuideSteps title={current.title} steps={current.steps} />
+        <GuideSteps title={hasModes ? current.title : null} steps={current.steps} />
       </div>
     </div>
   );
@@ -362,7 +362,7 @@ function ProjectsGrid() {
                 width={1400}
                 height={900}
                 loading="lazy"
-                className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+                className="h-full w-full object-cover object-left-top transition duration-500 group-hover:scale-[1.03]"
               />
               <span className="absolute left-3 top-3 rounded-full bg-ink/85 px-3 py-1 text-[10px] font-semibold uppercase text-brand ring-1 ring-brand/30">
                 {project.category}
@@ -408,7 +408,7 @@ function ProjectsGrid() {
                       alt={`Vista detallada de ${project.title}`}
                       width={1400}
                       height={900}
-                      className="aspect-[16/9] w-full object-cover object-top"
+                      className="aspect-[16/9] w-full bg-ink2 object-contain"
                     />
                     <div className="p-6 pt-2">
                       <DialogHeader>
