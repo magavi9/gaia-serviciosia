@@ -227,12 +227,12 @@ const PROJECTS: Project[] = [
 
 function GuideSteps({ title, steps }: { title: string; steps: string[] }) {
   return (
-    <div className="rounded-[12px] bg-white/[0.04] p-5 ring-1 ring-lime/25">
-      <p className="font-display text-sm font-semibold text-lime">{title}</p>
+    <div className="rounded-[12px] bg-white/[0.04] p-5 ring-1 ring-brand/25">
+      <p className="font-display text-sm font-semibold text-brand">{title}</p>
       <ol className="mt-4 space-y-3">
         {steps.map((step, i) => (
           <li key={i} className="flex gap-3">
-            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-lime/15 text-xs font-bold text-lime ring-1 ring-lime/40">
+            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-brand/15 text-xs font-bold text-brand ring-1 ring-brand/40">
               {i + 1}
             </span>
             <span className="text-sm leading-relaxed text-zinc-200">{step}</span>
@@ -250,7 +250,7 @@ function GuideSection({ guide }: { guide: Project["guide"] }) {
 
   return (
     <div className="mt-6">
-      <p className="font-display text-[11px] font-semibold uppercase tracking-wide text-sky">
+      <p className="font-display text-[11px] font-semibold uppercase tracking-wide text-brand2">
         Guía de Prueba Rápida (Paso a Paso)
       </p>
       {hasModes && (
@@ -263,7 +263,7 @@ function GuideSection({ guide }: { guide: Project["guide"] }) {
               className={cn(
                 "rounded-full px-3 py-1 text-xs font-semibold ring-1 transition-colors",
                 activeMode === i
-                  ? "bg-lime text-ink ring-lime"
+                  ? "bg-brand text-ink ring-brand"
                   : "bg-white/5 text-zinc-300 ring-white/10 hover:bg-white/10",
               )}
             >
@@ -367,7 +367,7 @@ function ProjectsGrid() {
                     />
                     <div className="p-6 pt-2">
                       <DialogHeader>
-                        <p className="font-display text-xs font-semibold uppercase text-lime">{project.category}</p>
+                        <p className="font-display text-xs font-semibold uppercase text-brand">{project.category}</p>
                         <DialogTitle className="font-display text-2xl text-white">{project.title}</DialogTitle>
                         <DialogDescription className="pt-2 text-base leading-relaxed text-zinc-400">
                           {project.description}
@@ -375,7 +375,7 @@ function ProjectsGrid() {
                       </DialogHeader>
                       <div className="mt-5 flex flex-wrap gap-2">
                         {project.technologies.map((technology) => (
-                          <span key={technology} className="rounded-full bg-white/5 px-3 py-1 text-xs text-sky ring-1 ring-white/10">
+                          <span key={technology} className="rounded-full bg-white/5 px-3 py-1 text-xs text-brand2 ring-1 ring-white/10">
                             {technology}
                           </span>
                         ))}
@@ -438,8 +438,8 @@ function Index() {
         <div className="mx-auto max-w-6xl px-6 pb-24 pt-16 md:pb-32 md:pt-24">
           <div className="grid items-center gap-12 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-7">
-              <span className="inline-flex items-center gap-2 rounded-full bg-lime/5 px-3 py-1 text-xs font-medium text-lime ring-1 ring-lime/30">
-                <span className="size-1.5 rounded-full bg-lime"></span> Automatización con IA para
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand/5 px-3 py-1 text-xs font-medium text-brand ring-1 ring-brand/30">
+                <span className="size-1.5 rounded-full bg-brand"></span> Automatización con IA para
                 empresas
               </span>
               <h1 className="mt-6 font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-7xl">
@@ -480,8 +480,8 @@ function Index() {
             <div className="md:col-span-5">
               <div className="relative rounded-[20px] bg-ink2 p-6 ring-1 ring-white/10">
                 <div className="mb-5 flex items-center gap-2">
-                  <span className="size-2.5 rounded-full bg-lime"></span>
-                  <span className="size-2.5 rounded-full bg-sky"></span>
+                  <span className="size-2.5 rounded-full bg-brand"></span>
+                  <span className="size-2.5 rounded-full bg-brand2"></span>
                   <span className="size-2.5 rounded-full bg-white/30"></span>
                   <span className="ml-auto text-[11px] font-medium uppercase tracking-wide text-zinc-500">
                     flujo activo
@@ -498,12 +498,12 @@ function Index() {
                 </div>
 
                 <div className="flex items-center justify-center">
-                  <span className="h-4 w-px bg-gradient-to-b from-lime to-transparent"></span>
+                  <span className="h-4 w-px bg-gradient-to-b from-brand to-transparent"></span>
                 </div>
                 <div className="flex items-center gap-2 py-1">
-                  <span className="size-2 rounded-full bg-lime floaty"></span>
+                  <span className="size-2 rounded-full bg-brand floaty"></span>
                   <span
-                    className="size-2 rounded-full bg-sky"
+                    className="size-2 rounded-full bg-brand2"
                     style={{ animationDelay: ".3s" }}
                   ></span>
                   <span
@@ -512,8 +512,8 @@ function Index() {
                   ></span>
                 </div>
 
-                <div className="mb-4 rounded-[14px] bg-lime/5 p-5 ring-1 ring-lime/30">
-                  <p className="text-[11px] font-medium uppercase tracking-wide text-lime">
+                <div className="mb-4 rounded-[14px] bg-brand/5 p-5 ring-1 ring-brand/30">
+                  <p className="text-[11px] font-medium uppercase tracking-wide text-brand">
                     Procesado por IA
                   </p>
                   <p className="mt-1 font-display text-base font-medium text-white">
@@ -522,15 +522,15 @@ function Index() {
                 </div>
 
                 <div className="flex items-center justify-center">
-                  <span className="h-4 w-px bg-gradient-to-b from-sky to-transparent"></span>
+                  <span className="h-4 w-px bg-gradient-to-b from-brand2 to-transparent"></span>
                 </div>
                 <div className="flex items-center gap-2 py-1">
                   <span
-                    className="size-2 rounded-full bg-sky floaty"
+                    className="size-2 rounded-full bg-brand2 floaty"
                     style={{ animationDelay: ".2s" }}
                   ></span>
                   <span
-                    className="size-2 rounded-full bg-lime"
+                    className="size-2 rounded-full bg-brand"
                     style={{ animationDelay: ".5s" }}
                   ></span>
                   <span
@@ -557,7 +557,7 @@ function Index() {
       <section id="servicios" className="bg-celeste-soft">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div className="max-w-[44ch]">
-            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime [filter:saturate(1.2)]">
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-brand [filter:saturate(1.2)]">
               Proyectos
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-ink text-balance md:text-4xl">
@@ -575,7 +575,7 @@ function Index() {
       <section id="proceso" className="bg-ink">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div className="max-w-[40ch]">
-            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime">
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-brand">
               Cómo funciona
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-white text-balance md:text-4xl">
@@ -627,7 +627,7 @@ function Index() {
       <section id="resultados" className="bg-celeste-soft">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div>
-            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime [filter:saturate(1.2)]">
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-brand [filter:saturate(1.2)]">
               Resultados
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-ink text-balance md:text-4xl">
@@ -678,7 +678,7 @@ function Index() {
             className="rounded-[24px] p-10 text-center ring-1 ring-white/10 md:p-14"
             style={{ background: "linear-gradient(135deg,#152144,#0a1226)" }}
           >
-            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime">
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-brand">
               Contacto
             </p>
             <h2 className="mx-auto mt-3 max-w-[18ch] font-display text-3xl font-semibold leading-tight tracking-[-0.02em] text-white text-balance md:text-5xl">
@@ -698,7 +698,7 @@ function Index() {
                 type="email"
                 name="text"
                 placeholder="tu@empresa.com"
-                className="flex-1 rounded-full bg-white/5 px-5 py-3 text-sm text-white ring-1 ring-white/15 placeholder:text-zinc-500 focus:outline-none focus:ring-lime/60"
+                className="flex-1 rounded-full bg-white/5 px-5 py-3 text-sm text-white ring-1 ring-white/15 placeholder:text-zinc-500 focus:outline-none focus:ring-brand/60"
               />
               <button
                 type="submit"
@@ -714,14 +714,14 @@ function Index() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 transition-colors hover:text-white"
               >
-                 <MessageCircle className="size-4 text-lime" />
+                 <MessageCircle className="size-4 text-brand" />
                  +54 9 343 470-5750
               </a>
               <a
                  href="mailto:gama.70.maga@gmail.com"
                 className="inline-flex items-center gap-2 transition-colors hover:text-white"
               >
-                 <Mail className="size-4 text-sky" />
+                 <Mail className="size-4 text-brand2" />
                  gama.70.maga@gmail.com
               </a>
             </div>

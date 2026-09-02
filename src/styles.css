@@ -41,8 +41,8 @@
   /* Y2K chrome control-panel palette */
   --color-ink: var(--ink);
   --color-ink2: var(--ink2);
-  --color-lime: var(--lime);
-  --color-sky: var(--sky);
+  --color-brand: var(--brand);
+  --color-brand2: var(--brand2);
   --color-chrome: var(--chrome);
   --color-celeste: var(--celeste);
   --color-celeste-soft: var(--celeste-soft);
@@ -55,14 +55,14 @@
   --radius: 0.625rem;
 
   /* The site is a dark navy control-panel by default. */
-  --background: oklch(0.16 0.03 264);
+  --background: oklch(0.14 0.02 265);
   --foreground: oklch(0.98 0.003 247);
-  --card: oklch(0.2 0.035 264);
+  --card: oklch(0.21 0.03 265);
   --card-foreground: oklch(0.98 0.003 247);
-  --popover: oklch(0.2 0.035 264);
+  --popover: oklch(0.21 0.03 265);
   --popover-foreground: oklch(0.98 0.003 247);
-  --primary: oklch(0.93 0.18 121);
-  --primary-foreground: oklch(0.16 0.03 264);
+  --primary: oklch(0.75 0.13 232);
+  --primary-foreground: oklch(0.16 0.02 265);
   --secondary: oklch(0.27 0.04 260);
   --secondary-foreground: oklch(0.98 0.003 247);
   --muted: oklch(0.27 0.04 260);
@@ -76,29 +76,29 @@
   --ring: oklch(0.551 0.027 264.364);
 
   /* Exact hex-matched palette from the chosen direction */
-  --ink: #0a1226;
-  --ink2: #101a36;
-  --lime: #c9f24d;
-  --sky: #8fd6ff;
-  --chrome: #dbe4f0;
+  --ink: #070b14;
+  --ink2: #0f172a;
+  --brand: #38bdf8;
+  --brand2: #7dd3fc;
+  --chrome: #e2e8f0;
 
   /* Celeste de la marca GAIA — deriva del cian del logo (#8fd6ff) */
-  --celeste: #8fd6ff;
-  --celeste-soft: #d7f0fd;
+  --celeste: #38bdf8;
+  --celeste-soft: #0b1220;
 
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 .dark {
-  --background: oklch(0.16 0.03 264);
+  --background: oklch(0.14 0.02 265);
   --foreground: oklch(0.98 0.003 247);
-  --card: oklch(0.2 0.035 264);
+  --card: oklch(0.21 0.03 265);
   --card-foreground: oklch(0.98 0.003 247);
-  --popover: oklch(0.2 0.035 264);
+  --popover: oklch(0.21 0.03 265);
   --popover-foreground: oklch(0.98 0.003 247);
-  --primary: oklch(0.93 0.18 121);
-  --primary-foreground: oklch(0.16 0.03 264);
+  --primary: oklch(0.75 0.13 232);
+  --primary-foreground: oklch(0.16 0.02 265);
   --secondary: oklch(0.27 0.04 260);
   --secondary-foreground: oklch(0.98 0.003 247);
   --muted: oklch(0.27 0.04 260);
@@ -129,17 +129,17 @@
 }
 
 @utility chrome-surface {
-  background: linear-gradient(180deg, #ffffff, #c2d0e8);
-  color: var(--color-ink);
+  background: var(--brand);
+  color: #041018;
 }
 
 @utility chrome-surface-tilt {
-  background: linear-gradient(135deg, #ffffff, #c2d0e8 55%, #93a9cf);
-  color: var(--color-ink);
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #041018;
 }
 
 @utility chrome-gradient-text {
-  background: linear-gradient(180deg, #ffffff, #9db2d6);
+  background: linear-gradient(180deg, #ffffff, #38bdf8);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
