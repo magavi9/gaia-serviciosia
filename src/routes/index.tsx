@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Eye, Mail, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Eye, Mail, MessageCircle, X } from "lucide-react";
 import gaiaLogo from "@/assets/gaia-logo.png.asset.json";
 import ventasStockCover from "@/assets/projects/ventas-stock.png";
 import catalogoWhatsappCover from "@/assets/projects/catalogo-whatsapp.png";
@@ -9,6 +9,7 @@ import tiendaWebCover from "@/assets/projects/tienda-web.png";
 import tarjetaDigitalCover from "@/assets/projects/tarjeta-digital.png";
 import organizadorPersonalCover from "@/assets/projects/organizador-personal.png";
 import estudiabotCover from "@/assets/projects/estudiabot.png";
+import cotizadorCover from "@/assets/projects/cotizador.png.asset.json";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -223,11 +224,31 @@ const PROJECTS: Project[] = [
       ],
     },
   },
+  {
+    index: "08",
+    title: "Cotizador & Reserva Inteligente",
+    description:
+      "Herramienta interactiva para cotizar servicios en tiempo real, seleccionar paquetes, fecha y hora de turno, y enviar la solicitud estructurada directamente por WhatsApp.",
+    url: "https://lovable.dev/projects/572bcd94-8096-4bd6-bf02-9d5a1ef1bebc",
+    technologies: ["Cotización en vivo", "Reservas", "WhatsApp"],
+    category: "Gestión & Negocios",
+    cover: cotizadorCover.url,
+    guide: {
+      title: "💡 Guía rápida para probar esta Demo",
+      steps: [
+        "Elegí un rubro: cambiá entre Taller, Estética o Servicios Digitales para ver cómo se transforman los servicios y opciones.",
+        "Configurá tu presupuesto: seleccioná un servicio base, sumá adicionales y ajustá la cantidad con el contador.",
+        "Elegí modalidad y turno: seleccioná el tipo de atención/plazo, una fecha en el calendario y una franja horaria.",
+        "Revisá el resumen en vivo: observá cómo el total se calcula automáticamente.",
+        "Probá el botón de WhatsApp: ingresá tu nombre y hacé clic en el botón verde final para ver cómo se autogenera el mensaje estructurado listo para enviar.",
+      ],
+    },
+  },
 ];
 
 function GuideSteps({ title, steps }: { title: string; steps: string[] }) {
   return (
-    <div className="rounded-[12px] bg-white/[0.04] p-5 ring-1 ring-brand/25">
+    <div className="rounded-xl bg-white/[0.04] p-5 ring-1 ring-slate-800">
       <p className="font-display text-sm font-semibold text-brand">{title}</p>
       <ol className="mt-4 space-y-3">
         {steps.map((step, i) => (
@@ -245,14 +266,37 @@ function GuideSteps({ title, steps }: { title: string; steps: string[] }) {
 
 function GuideSection({ guide }: { guide: Project["guide"] }) {
   const [activeMode, setActiveMode] = useState(0);
+  const [open, setOpen] = useState(true);
   const hasModes = Boolean(guide.modes && guide.modes.length > 0);
   const current = hasModes ? guide.modes![activeMode]! : { title: guide.title, steps: guide.steps };
 
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="mt-6 w-full rounded-xl border border-brand/30 bg-brand/5 px-4 py-3 text-left text-sm font-semibold text-brand transition-colors hover:bg-brand/10"
+      >
+        💡 Guía rápida para probar esta Demo
+      </button>
+    );
+  }
+
   return (
-    <div className="mt-6">
-      <p className="font-display text-[11px] font-semibold uppercase tracking-wide text-brand2">
-        Guía de Prueba Rápida (Paso a Paso)
-      </p>
+    <div className="mt-6 rounded-xl border border-brand/30 bg-brand/[0.04] p-4">
+      <div className="flex items-start justify-between gap-3">
+        <p className="font-display text-[11px] font-semibold uppercase tracking-wide text-brand">
+          Guía rápida para probar esta Demo
+        </p>
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label="Cerrar guía"
+          className="rounded-full p-1 text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          <X className="size-4" />
+        </button>
+      </div>
       {hasModes && (
         <div className="mt-3 flex flex-wrap gap-2">
           {guide.modes!.map((mode, i) => (
@@ -263,8 +307,8 @@ function GuideSection({ guide }: { guide: Project["guide"] }) {
               className={cn(
                 "rounded-full px-3 py-1 text-xs font-semibold ring-1 transition-colors",
                 activeMode === i
-                  ? "bg-brand text-ink ring-brand"
-                  : "bg-white/5 text-slate-300 ring-white/10 hover:bg-white/10",
+                  ? "bg-brand text-[#041018] ring-brand"
+                  : "bg-white/5 text-slate-300 ring-slate-700 hover:bg-white/10",
               )}
             >
               {mode.label}
