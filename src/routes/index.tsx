@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Eye, Mail, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Eye, Mail, MessageCircle, X } from "lucide-react";
 import gaiaLogo from "@/assets/gaia-logo.png.asset.json";
 import ventasStockCover from "@/assets/projects/ventas-stock.png";
 import catalogoWhatsappCover from "@/assets/projects/catalogo-whatsapp.png";
@@ -9,6 +9,7 @@ import tiendaWebCover from "@/assets/projects/tienda-web.png";
 import tarjetaDigitalCover from "@/assets/projects/tarjeta-digital.png";
 import organizadorPersonalCover from "@/assets/projects/organizador-personal.png";
 import estudiabotCover from "@/assets/projects/estudiabot.png";
+import cotizadorCover from "@/assets/projects/cotizador.png.asset.json";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -223,19 +224,39 @@ const PROJECTS: Project[] = [
       ],
     },
   },
+  {
+    index: "08",
+    title: "Cotizador & Reserva Inteligente",
+    description:
+      "Herramienta interactiva para cotizar servicios en tiempo real, seleccionar paquetes, fecha y hora de turno, y enviar la solicitud estructurada directamente por WhatsApp.",
+    url: "https://lovable.dev/projects/572bcd94-8096-4bd6-bf02-9d5a1ef1bebc",
+    technologies: ["Cotización en vivo", "Reservas", "WhatsApp"],
+    category: "Gestión & Negocios",
+    cover: cotizadorCover.url,
+    guide: {
+      title: "💡 Guía rápida para probar esta Demo",
+      steps: [
+        "Elegí un rubro: cambiá entre Taller, Estética o Servicios Digitales para ver cómo se transforman los servicios y opciones.",
+        "Configurá tu presupuesto: seleccioná un servicio base, sumá adicionales y ajustá la cantidad con el contador.",
+        "Elegí modalidad y turno: seleccioná el tipo de atención/plazo, una fecha en el calendario y una franja horaria.",
+        "Revisá el resumen en vivo: observá cómo el total se calcula automáticamente.",
+        "Probá el botón de WhatsApp: ingresá tu nombre y hacé clic en el botón verde final para ver cómo se autogenera el mensaje estructurado listo para enviar.",
+      ],
+    },
+  },
 ];
 
-function GuideSteps({ title, steps }: { title: string; steps: string[] }) {
+function GuideSteps({ title, steps }: { title: string | null; steps: string[] }) {
   return (
-    <div className="rounded-[12px] bg-white/[0.04] p-5 ring-1 ring-lime/25">
-      <p className="font-display text-sm font-semibold text-lime">{title}</p>
-      <ol className="mt-4 space-y-3">
+    <div className="rounded-xl bg-white/[0.04] p-5 ring-1 ring-slate-800">
+      {title && <p className="font-display text-sm font-semibold text-brand">{title}</p>}
+      <ol className="space-y-3 [&:not(:first-child)]:mt-4">
         {steps.map((step, i) => (
           <li key={i} className="flex gap-3">
-            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-lime/15 text-xs font-bold text-lime ring-1 ring-lime/40">
+            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-brand/15 text-xs font-bold text-brand ring-1 ring-brand/40">
               {i + 1}
             </span>
-            <span className="text-sm leading-relaxed text-zinc-200">{step}</span>
+            <span className="text-sm leading-relaxed text-slate-200">{step}</span>
           </li>
         ))}
       </ol>
@@ -245,14 +266,37 @@ function GuideSteps({ title, steps }: { title: string; steps: string[] }) {
 
 function GuideSection({ guide }: { guide: Project["guide"] }) {
   const [activeMode, setActiveMode] = useState(0);
+  const [open, setOpen] = useState(true);
   const hasModes = Boolean(guide.modes && guide.modes.length > 0);
   const current = hasModes ? guide.modes![activeMode]! : { title: guide.title, steps: guide.steps };
 
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="mt-6 w-full rounded-xl border border-brand/30 bg-brand/5 px-4 py-3 text-left text-sm font-semibold text-brand transition-colors hover:bg-brand/10"
+      >
+        💡 Guía rápida para probar esta Demo
+      </button>
+    );
+  }
+
   return (
-    <div className="mt-6">
-      <p className="font-display text-[11px] font-semibold uppercase tracking-wide text-sky">
-        Guía de Prueba Rápida (Paso a Paso)
-      </p>
+    <div className="mt-6 rounded-xl border border-brand/30 bg-brand/[0.04] p-4">
+      <div className="flex items-start justify-between gap-3">
+        <p className="font-display text-[11px] font-semibold uppercase tracking-wide text-brand">
+          Guía rápida para probar esta Demo
+        </p>
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label="Cerrar guía"
+          className="rounded-full p-1 text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          <X className="size-4" />
+        </button>
+      </div>
       {hasModes && (
         <div className="mt-3 flex flex-wrap gap-2">
           {guide.modes!.map((mode, i) => (
@@ -263,8 +307,8 @@ function GuideSection({ guide }: { guide: Project["guide"] }) {
               className={cn(
                 "rounded-full px-3 py-1 text-xs font-semibold ring-1 transition-colors",
                 activeMode === i
-                  ? "bg-lime text-ink ring-lime"
-                  : "bg-white/5 text-zinc-300 ring-white/10 hover:bg-white/10",
+                  ? "bg-brand text-[#041018] ring-brand"
+                  : "bg-white/5 text-slate-300 ring-slate-700 hover:bg-white/10",
               )}
             >
               {mode.label}
@@ -273,7 +317,7 @@ function GuideSection({ guide }: { guide: Project["guide"] }) {
         </div>
       )}
       <div className="mt-3">
-        <GuideSteps title={current.title} steps={current.steps} />
+        <GuideSteps title={hasModes ? current.title : null} steps={current.steps} />
       </div>
     </div>
   );
@@ -295,8 +339,9 @@ function ProjectsGrid() {
             aria-pressed={activeFilter === filter}
             onClick={() => setActiveFilter(filter)}
             className={cn(
-              "h-9 rounded-full border-ink/15 bg-white/45 px-4 text-ink shadow-none hover:bg-white/80 hover:text-ink",
-              activeFilter === filter && "border-ink bg-ink text-white hover:bg-ink hover:text-white",
+              "h-9 rounded-full border-slate-800 bg-white/[0.03] px-4 text-slate-300 shadow-none hover:bg-white/[0.07] hover:text-white",
+              activeFilter === filter &&
+                "border-brand bg-brand text-[#041018] hover:bg-brand hover:text-[#041018]",
             )}
           >
             {filter}
@@ -308,7 +353,7 @@ function ProjectsGrid() {
         {visibleProjects.map((project) => (
           <article
             key={project.title}
-            className="group flex min-w-0 flex-col overflow-hidden rounded-[8px] bg-white ring-1 ring-ink/10 transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+            className="group flex min-w-0 flex-col overflow-hidden rounded-2xl bg-ink2 ring-1 ring-slate-800 transition duration-300 hover:-translate-y-1 hover:ring-brand/40"
           >
             <div className="relative aspect-[16/10] overflow-hidden bg-ink2">
               <img
@@ -317,9 +362,9 @@ function ProjectsGrid() {
                 width={1400}
                 height={900}
                 loading="lazy"
-                className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+                className="h-full w-full object-cover object-left-top transition duration-500 group-hover:scale-[1.03]"
               />
-              <span className="absolute left-3 top-3 rounded-full bg-ink/90 px-3 py-1 text-[10px] font-semibold uppercase text-white ring-1 ring-white/15">
+              <span className="absolute left-3 top-3 rounded-full bg-ink/85 px-3 py-1 text-[10px] font-semibold uppercase text-brand ring-1 ring-brand/30">
                 {project.category}
               </span>
               <span className="absolute right-3 top-3 font-display text-xs font-semibold text-white drop-shadow-md">
@@ -327,22 +372,22 @@ function ProjectsGrid() {
               </span>
             </div>
             <div className="flex flex-1 flex-col p-5">
-              <h3 className="font-display text-lg font-semibold text-ink">{project.title}</h3>
-              <p className="mt-2 flex-1 text-pretty font-body text-sm leading-relaxed text-zinc-600">
+              <h3 className="font-display text-lg font-semibold text-white">{project.title}</h3>
+              <p className="mt-2 flex-1 text-pretty font-body text-sm leading-relaxed text-slate-400">
                 {project.description}
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.technologies.map((technology) => (
                   <span
                     key={technology}
-                    className="rounded-full bg-celeste-soft px-2.5 py-1 text-[11px] font-semibold text-ink ring-1 ring-ink/10"
+                    className="rounded-full bg-brand/10 px-2.5 py-1 text-[11px] font-semibold text-brand ring-1 ring-brand/20"
                   >
                     {technology}
                   </span>
                 ))}
               </div>
               <div className="mt-6 grid grid-cols-2 gap-2">
-                <Button asChild className="h-10 rounded-md bg-ink text-white shadow-none hover:bg-ink/90">
+                <Button asChild className="h-10 rounded-lg bg-brand text-[#041018] shadow-none hover:bg-brand/90">
                   <a href={project.url} target="_blank" rel="noopener noreferrer">
                     Probar Demo <ArrowUpRight />
                   </a>
@@ -352,36 +397,36 @@ function ProjectsGrid() {
                     <Button
                       type="button"
                       variant="outline"
-                      className="h-10 rounded-md border-ink/20 bg-transparent text-ink shadow-none hover:bg-celeste-soft hover:text-ink"
+                      className="h-10 rounded-lg border-slate-700 bg-transparent text-slate-200 shadow-none hover:bg-white/5 hover:text-white"
                     >
                       Ver Detalles <Eye />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto border-white/10 bg-ink p-0 text-white sm:rounded-[8px]">
+                  <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto border-slate-800 bg-ink p-0 text-white sm:rounded-2xl">
                     <img
                       src={project.cover}
                       alt={`Vista detallada de ${project.title}`}
                       width={1400}
                       height={900}
-                      className="aspect-[16/9] w-full object-cover object-top"
+                      className="aspect-[16/9] w-full bg-ink2 object-contain"
                     />
                     <div className="p-6 pt-2">
                       <DialogHeader>
-                        <p className="font-display text-xs font-semibold uppercase text-lime">{project.category}</p>
+                        <p className="font-display text-xs font-semibold uppercase text-brand">{project.category}</p>
                         <DialogTitle className="font-display text-2xl text-white">{project.title}</DialogTitle>
-                        <DialogDescription className="pt-2 text-base leading-relaxed text-zinc-400">
+                        <DialogDescription className="pt-2 text-base leading-relaxed text-slate-400">
                           {project.description}
                         </DialogDescription>
                       </DialogHeader>
                       <div className="mt-5 flex flex-wrap gap-2">
                         {project.technologies.map((technology) => (
-                          <span key={technology} className="rounded-full bg-white/5 px-3 py-1 text-xs text-sky ring-1 ring-white/10">
+                          <span key={technology} className="rounded-full bg-white/5 px-3 py-1 text-xs text-brand2 ring-1 ring-slate-800">
                             {technology}
                           </span>
                         ))}
                       </div>
                       <GuideSection guide={project.guide} />
-                      <Button asChild className="chrome-surface mt-6 h-11 w-full rounded-md shadow-none hover:opacity-90">
+                      <Button asChild className="mt-6 h-11 w-full rounded-lg bg-brand text-[#041018] shadow-none hover:bg-brand/90">
                         <a href={project.url} target="_blank" rel="noopener noreferrer">
                           🚀 Abrir Demo en Vivo <ArrowUpRight />
                         </a>
@@ -400,7 +445,7 @@ function ProjectsGrid() {
 
 function Index() {
   return (
-    <div className="min-h-screen bg-ink font-body text-zinc-300">
+    <div className="min-h-screen bg-ink font-body text-slate-300">
       {/* NAV */}
       <header className="text-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
@@ -438,14 +483,13 @@ function Index() {
         <div className="mx-auto max-w-6xl px-6 pb-24 pt-16 md:pb-32 md:pt-24">
           <div className="grid items-center gap-12 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-7">
-              <span className="inline-flex items-center gap-2 rounded-full bg-lime/5 px-3 py-1 text-xs font-medium text-lime ring-1 ring-lime/30">
-                <span className="size-1.5 rounded-full bg-lime"></span> Automatización con IA para
-                empresas
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand/10 px-3 py-1 text-xs font-medium text-brand ring-1 ring-brand/40">
+                <span className="size-1.5 rounded-full bg-brand"></span> Soluciones Digitales Inteligentes
               </span>
               <h1 className="mt-6 font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-7xl">
                 Automatiza el trabajo repetitivo con IA
               </h1>
-              <p className="mt-6 max-w-[46ch] text-pretty font-body text-base leading-relaxed text-zinc-400 md:text-lg">
+              <p className="mt-6 max-w-[46ch] text-pretty font-body text-base leading-relaxed text-slate-400 md:text-lg">
                 GAIA conecta tus herramientas y deja que los procesos fluyan solos. Menos clics,
                 cero fricción y tu equipo enfocado en lo que importa.
               </p>
@@ -460,7 +504,7 @@ function Index() {
                       style={{
                         borderTop: "5px solid transparent",
                         borderBottom: "5px solid transparent",
-                        borderLeft: "8px solid #0a1226",
+                        borderLeft: "8px solid #041018",
                       }}
                     ></span>
                   </span>
@@ -468,7 +512,7 @@ function Index() {
                 </a>
                 <a
                   href="#servicios"
-                  className="inline-flex items-center rounded-full py-3 px-5 text-sm font-medium text-zinc-200 ring-1 ring-white/15 transition-colors hover:text-white hover:ring-white/40"
+                  className="inline-flex items-center rounded-full py-3 px-5 text-sm font-medium text-slate-200 ring-1 ring-white/15 transition-colors hover:text-white hover:ring-white/40"
                 >
                   Ver cómo funciona
                 </a>
@@ -478,18 +522,18 @@ function Index() {
 
             {/* FLOW PANEL */}
             <div className="md:col-span-5">
-              <div className="relative rounded-[20px] bg-ink2 p-6 ring-1 ring-white/10">
+              <div className="relative rounded-2xl bg-ink2 p-6 ring-1 ring-slate-800">
                 <div className="mb-5 flex items-center gap-2">
-                  <span className="size-2.5 rounded-full bg-lime"></span>
-                  <span className="size-2.5 rounded-full bg-sky"></span>
+                  <span className="size-2.5 rounded-full bg-brand"></span>
+                  <span className="size-2.5 rounded-full bg-brand2"></span>
                   <span className="size-2.5 rounded-full bg-white/30"></span>
-                  <span className="ml-auto text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                  <span className="ml-auto text-[11px] font-medium uppercase tracking-wide text-slate-500">
                     flujo activo
                   </span>
                 </div>
 
                 <div className="mb-4 rounded-[14px] bg-white/[0.03] p-5 ring-1 ring-white/10">
-                  <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                  <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">
                     Entrada
                   </p>
                   <p className="mt-1 font-display text-base font-medium text-white">
@@ -498,12 +542,12 @@ function Index() {
                 </div>
 
                 <div className="flex items-center justify-center">
-                  <span className="h-4 w-px bg-gradient-to-b from-lime to-transparent"></span>
+                  <span className="h-4 w-px bg-gradient-to-b from-brand to-transparent"></span>
                 </div>
                 <div className="flex items-center gap-2 py-1">
-                  <span className="size-2 rounded-full bg-lime floaty"></span>
+                  <span className="size-2 rounded-full bg-brand floaty"></span>
                   <span
-                    className="size-2 rounded-full bg-sky"
+                    className="size-2 rounded-full bg-brand2"
                     style={{ animationDelay: ".3s" }}
                   ></span>
                   <span
@@ -512,8 +556,8 @@ function Index() {
                   ></span>
                 </div>
 
-                <div className="mb-4 rounded-[14px] bg-lime/5 p-5 ring-1 ring-lime/30">
-                  <p className="text-[11px] font-medium uppercase tracking-wide text-lime">
+                <div className="mb-4 rounded-[14px] bg-brand/5 p-5 ring-1 ring-brand/30">
+                  <p className="text-[11px] font-medium uppercase tracking-wide text-brand">
                     Procesado por IA
                   </p>
                   <p className="mt-1 font-display text-base font-medium text-white">
@@ -522,15 +566,15 @@ function Index() {
                 </div>
 
                 <div className="flex items-center justify-center">
-                  <span className="h-4 w-px bg-gradient-to-b from-sky to-transparent"></span>
+                  <span className="h-4 w-px bg-gradient-to-b from-brand2 to-transparent"></span>
                 </div>
                 <div className="flex items-center gap-2 py-1">
                   <span
-                    className="size-2 rounded-full bg-sky floaty"
+                    className="size-2 rounded-full bg-brand2 floaty"
                     style={{ animationDelay: ".2s" }}
                   ></span>
                   <span
-                    className="size-2 rounded-full bg-lime"
+                    className="size-2 rounded-full bg-brand"
                     style={{ animationDelay: ".5s" }}
                   ></span>
                   <span
@@ -540,7 +584,7 @@ function Index() {
                 </div>
 
                 <div className="rounded-[14px] bg-white/[0.03] p-5 ring-1 ring-white/10">
-                  <p className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                  <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">
                     Salida
                   </p>
                   <p className="mt-1 font-display text-base font-medium text-white">
@@ -554,16 +598,16 @@ function Index() {
       </section>
 
       {/* PROYECTOS */}
-      <section id="servicios" className="bg-celeste-soft">
+      <section id="servicios" className="bg-[#0b1220]">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div className="max-w-[44ch]">
-            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime [filter:saturate(1.2)]">
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-brand">
               Proyectos
             </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-ink text-balance md:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-white text-balance md:text-4xl">
               Soluciones digitales listas para tu negocio
             </h2>
-            <p className="mt-4 font-body text-base leading-relaxed text-zinc-500">
+            <p className="mt-4 font-body text-base leading-relaxed text-slate-400">
               Explorá una selección de soluciones creadas para simplificar operaciones, vender más y organizar mejor el trabajo.
             </p>
           </div>
@@ -575,7 +619,7 @@ function Index() {
       <section id="proceso" className="bg-ink">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div className="max-w-[40ch]">
-            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime">
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-brand">
               Cómo funciona
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-white text-balance md:text-4xl">
@@ -588,7 +632,7 @@ function Index() {
                 01
               </span>
               <h3 className="mt-4 font-display text-lg font-semibold text-white">Auditamos</h3>
-              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-zinc-400">
+              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-slate-400">
                 Mapeamos tus procesos y detectamos dónde se pierde tiempo y dinero.
               </p>
             </div>
@@ -597,7 +641,7 @@ function Index() {
                 02
               </span>
               <h3 className="mt-4 font-display text-lg font-semibold text-white">Diseñamos</h3>
-              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-zinc-400">
+              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-slate-400">
                 Definimos el flujo ideal y las reglas que tu IA seguirá sin dudar.
               </p>
             </div>
@@ -606,7 +650,7 @@ function Index() {
                 03
               </span>
               <h3 className="mt-4 font-display text-lg font-semibold text-white">Integramos</h3>
-              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-zinc-400">
+              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-slate-400">
                 Conectamos tus herramientas y probamos cada paso en producción.
               </p>
             </div>
@@ -615,7 +659,7 @@ function Index() {
                 04
               </span>
               <h3 className="mt-4 font-display text-lg font-semibold text-white">Medimos</h3>
-              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-zinc-400">
+              <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-slate-400">
                 Monitoreamos métricas y optimizamos el flujo cada semana.
               </p>
             </div>
@@ -624,45 +668,45 @@ function Index() {
       </section>
 
       {/* RESULTADOS */}
-      <section id="resultados" className="bg-celeste-soft">
+      <section id="resultados" className="bg-[#0b1220]">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div>
-            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime [filter:saturate(1.2)]">
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-brand">
               Resultados
             </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-ink text-balance md:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-white text-balance md:text-4xl">
               Números que reflejan el ahorro real
             </h2>
             <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
               <div>
-                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
+                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-6xl">
                   85%
                 </p>
-                <p className="mt-3 font-body text-sm text-zinc-500">
+                <p className="mt-3 font-body text-sm text-slate-400">
                   menos trabajo manual en operaciones clave
                 </p>
               </div>
               <div>
-                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
+                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-6xl">
                   4.2×
                 </p>
-                <p className="mt-3 font-body text-sm text-zinc-500">
+                <p className="mt-3 font-body text-sm text-slate-400">
                   más rápido el ciclo de cada proceso
                 </p>
               </div>
               <div>
-                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
+                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-6xl">
                   30k
                 </p>
-                <p className="mt-3 font-body text-sm text-zinc-500">
+                <p className="mt-3 font-body text-sm text-slate-400">
                   tareas automatizadas cada mes
                 </p>
               </div>
               <div>
-                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-ink md:text-6xl">
+                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-6xl">
                   99.9%
                 </p>
-                <p className="mt-3 font-body text-sm text-zinc-500">
+                <p className="mt-3 font-body text-sm text-slate-400">
                   de disponibilidad en producción
                 </p>
               </div>
@@ -676,15 +720,15 @@ function Index() {
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div
             className="rounded-[24px] p-10 text-center ring-1 ring-white/10 md:p-14"
-            style={{ background: "linear-gradient(135deg,#152144,#0a1226)" }}
+            style={{ background: "linear-gradient(135deg,#0f172a,#070b14)" }}
           >
-            <p className="font-display text-sm font-medium uppercase tracking-wide text-lime">
+            <p className="font-display text-sm font-medium uppercase tracking-wide text-brand">
               Contacto
             </p>
             <h2 className="mx-auto mt-3 max-w-[18ch] font-display text-3xl font-semibold leading-tight tracking-[-0.02em] text-white text-balance md:text-5xl">
               Solicitá tu presupuesto o una demostración
             </h2>
-            <p className="mx-auto mt-5 max-w-[46ch] text-pretty font-body text-base leading-relaxed text-zinc-400 md:text-lg">
+            <p className="mx-auto mt-5 max-w-[46ch] text-pretty font-body text-base leading-relaxed text-slate-400 md:text-lg">
               Cuéntanos tu reto y te mostramos un flujo automatizado funcionando en 48 horas. Respondemos en menos de un día hábil.
             </p>
             <form
@@ -698,7 +742,7 @@ function Index() {
                 type="email"
                 name="text"
                 placeholder="tu@empresa.com"
-                className="flex-1 rounded-full bg-white/5 px-5 py-3 text-sm text-white ring-1 ring-white/15 placeholder:text-zinc-500 focus:outline-none focus:ring-lime/60"
+                className="flex-1 rounded-full bg-white/5 px-5 py-3 text-sm text-white ring-1 ring-white/15 placeholder:text-slate-500 focus:outline-none focus:ring-brand/60"
               />
               <button
                 type="submit"
@@ -707,25 +751,25 @@ function Index() {
                 Solicitar demo
               </button>
             </form>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-body text-sm text-zinc-400">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-body text-sm text-slate-400">
               <a
                  href="https://wa.me/5493434705750"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 transition-colors hover:text-white"
               >
-                 <MessageCircle className="size-4 text-lime" />
+                 <MessageCircle className="size-4 text-brand" />
                  +54 9 343 470-5750
               </a>
               <a
                  href="mailto:gama.70.maga@gmail.com"
                 className="inline-flex items-center gap-2 transition-colors hover:text-white"
               >
-                 <Mail className="size-4 text-sky" />
+                 <Mail className="size-4 text-brand2" />
                  gama.70.maga@gmail.com
               </a>
             </div>
-            <p className="mt-6 font-body text-xs text-zinc-500">
+            <p className="mt-6 font-body text-xs text-slate-500">
               Sin tarjeta. Respuesta en menos de un día hábil.
             </p>
           </div>
@@ -744,15 +788,15 @@ function Index() {
               height={176}
             />
             
-            <p className="mt-4 max-w-[30ch] text-pretty font-body text-sm leading-relaxed text-zinc-500">
+            <p className="mt-4 max-w-[30ch] text-pretty font-body text-sm leading-relaxed text-slate-500">
               Automatización con IA para que tu equipo trabaje en lo que sí importa.
             </p>
           </div>
           <div className="md:col-span-2 md:col-start-6">
-            <p className="font-display text-xs font-semibold uppercase tracking-wide text-zinc-400">
+            <p className="font-display text-xs font-semibold uppercase tracking-wide text-slate-400">
               Producto
             </p>
-            <ul className="mt-4 space-y-3 font-body text-sm text-zinc-500">
+            <ul className="mt-4 space-y-3 font-body text-sm text-slate-500">
               <li>
                 <a href="#servicios" className="transition-colors hover:text-white">
                   Servicios
@@ -771,10 +815,10 @@ function Index() {
             </ul>
           </div>
           <div className="md:col-span-3">
-            <p className="font-display text-xs font-semibold uppercase tracking-wide text-zinc-400">
+            <p className="font-display text-xs font-semibold uppercase tracking-wide text-slate-400">
               Compañía
             </p>
-            <ul className="mt-4 space-y-3 font-body text-sm text-zinc-500">
+            <ul className="mt-4 space-y-3 font-body text-sm text-slate-500">
               <li>
                 <a href="#" className="transition-colors hover:text-white">
                   Nosotros
@@ -794,7 +838,7 @@ function Index() {
           </div>
         </div>
         <div className="mx-auto max-w-6xl px-6 pb-10">
-          <p className="font-body text-xs text-zinc-600">
+          <p className="font-body text-xs text-slate-500">
             © 2026 GAIA. Todos los derechos reservados.
           </p>
         </div>
