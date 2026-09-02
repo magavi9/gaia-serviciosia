@@ -229,7 +229,7 @@ const PROJECTS: Project[] = [
     title: "Cotizador & Reserva Inteligente",
     description:
       "Herramienta interactiva para cotizar servicios en tiempo real, seleccionar paquetes, fecha y hora de turno, y enviar la solicitud estructurada directamente por WhatsApp.",
-    url: "https://lovable.dev/projects/572bcd94-8096-4bd6-bf02-9d5a1ef1bebc",
+    url: "https://cotizador-presupuestador.lovable.app",
     technologies: ["Cotización en vivo", "Reservas", "WhatsApp"],
     category: "Gestión & Negocios",
     cover: cotizadorCover.url,
