@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Eye, Mail, MessageCircle, X } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import gaiaLogo from "@/assets/gaia-logo.png.asset.json";
 import ventasStockCover from "@/assets/projects/ventas-stock.png";
 import catalogoWhatsappCover from "@/assets/projects/catalogo-whatsapp.png";
-import agendaTurnosCover from "@/assets/projects/agenda-turnos.png";
+import agendaTurnosCover from "@/assets/projects/agenda-turnos.jpg";
 import tiendaWebCover from "@/assets/projects/tienda-web.png";
-import tarjetaDigitalCover from "@/assets/projects/tarjeta-digital.png";
+import tarjetaDigitalCover from "@/assets/projects/tarjeta-digital.jpg";
 import organizadorPersonalCover from "@/assets/projects/organizador-personal.png";
 import estudiabotCover from "@/assets/projects/estudiabot.png";
-import cotizadorCover from "@/assets/projects/cotizador.png.asset.json";
+import cotizadorCover from "@/assets/projects/cotizador.jpg";
+import finanzasCover from "@/assets/projects/finanzas.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -232,7 +239,7 @@ const PROJECTS: Project[] = [
     url: "https://cotizador-presupuestador.lovable.app",
     technologies: ["Cotización en vivo", "Reservas", "WhatsApp"],
     category: "Gestión & Negocios",
-    cover: cotizadorCover.url,
+    cover: cotizadorCover,
     guide: {
       title: "💡 Guía rápida para probar esta Demo",
       steps: [
@@ -241,6 +248,27 @@ const PROJECTS: Project[] = [
         "Elegí modalidad y turno: seleccioná el tipo de atención/plazo, una fecha en el calendario y una franja horaria.",
         "Revisá el resumen en vivo: observá cómo el total se calcula automáticamente.",
         "Probá el botón de WhatsApp: ingresá tu nombre y hacé clic en el botón verde final para ver cómo se autogenera el mensaje estructurado listo para enviar.",
+      ],
+    },
+  },
+  {
+    index: "09",
+    title: "Control de Gastos, Ingresos y Vencimientos",
+    description:
+      "Herramienta web interactiva para la gestión financiera mensual y anual, con soporte bimonetario (ARS/USD), seguimiento de vencimientos con alertas y registro de medios de pago.",
+    url: "https://glowing-gelato-ed8f68.netlify.app/",
+    technologies: ["HTML5", "CSS Grid", "JavaScript", "LocalStorage", "Responsive Design"],
+    category: "Productividad",
+    cover: finanzasCover,
+    guide: {
+      title: "\ud83d\udca1 Guía rápida para probar esta Demo",
+      steps: [
+        "Registro de ingresos: cargá tu sueldo principal y hasta tres ingresos extras, detallando el concepto y eligiendo la divisa (ARS o USD). Los importes se formatean solos.",
+        "Carga de gastos: elegí el mes, completá el nombre del gasto, la fecha límite en el calendario, la moneda y el monto, y tocá '+ Agregar Gasto'.",
+        "Alerta de vencimientos: si algo vence en el día de la fecha, verás una alerta roja arriba de todo con el concepto y el monto a liquidar.",
+        "Pagos y plataforma: hacé clic en la etiqueta 'Pendiente' (ámbar) para pasarla a 'Pagado' (verde) y habilitar el medio de pago y la plataforma utilizada.",
+        "Balance en vivo y cierre anual: mirá cómo se descuentan los pagos de tus ingresos, con importes discriminados en pesos y dólares, y el acumulado anual al pie.",
+        "Privacidad: todo se guarda localmente en tu navegador; podés cerrar la pestaña y tus datos siguen ahí al volver.",
       ],
     },
   },
@@ -443,6 +471,64 @@ function ProjectsGrid() {
   );
 }
 
+const FAQS = [
+  {
+    question: "¿En cuánto tiempo está lista una solución?",
+    answer:
+      "Una vez que coordinemos lo que tu negocio necesita, tenés una primera versión lista para usar en solo 2 a 3 días hábiles.",
+  },
+  {
+    question: "¿Incluye soporte técnico y material de ayuda?",
+    answer:
+      "Sí. Junto con la herramienta entregamos una Guía de Uso con instrucciones sencillas y claras para vos o tu equipo, además de 15 días de soporte técnico de puesta en marcha para resolver cualquier duda inicial. Finalizado ese período, las nuevas funciones, modificaciones o mantenimientos evolutivos se presupuestan por separado.",
+  },
+  {
+    question: "¿Cómo se integran las herramientas con mi negocio?",
+    answer:
+      "Son aplicaciones web accesibles desde cualquier navegador o celular, configuradas para enviar reservas, datos o pedidos estructurados directamente al WhatsApp y correo del negocio, sin instalaciones complicadas.",
+  },
+  {
+    question: "¿Los sistemas tienen costo de mantenimiento mensual?",
+    answer:
+      "La mayoría de las soluciones operan sobre infraestructura en la nube con planes base gratuitos o de muy bajo costo. Solo proyectos con alto volumen de almacenamiento o automatizaciones complejas requieren mantenimiento específico.",
+  },
+];
+
+function DemoRequestForm() {
+  const [email, setEmail] = useState("");
+
+  return (
+    <form
+      className="mx-auto mt-9 flex max-w-md flex-col justify-center gap-3 sm:flex-row"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const message = `Hola, quiero solicitar una demo para el correo: ${email}`;
+        window.open(
+          `https://wa.me/5493434705750?text=${encodeURIComponent(message)}`,
+          "_blank",
+          "noopener,noreferrer",
+        );
+      }}
+    >
+      <input
+        type="email"
+        name="email"
+        required
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+        placeholder="tu@empresa.com"
+        className="flex-1 rounded-full bg-white/5 px-5 py-3 text-sm text-white ring-1 ring-white/15 placeholder:text-slate-500 focus:outline-none focus:ring-brand/60"
+      />
+      <button
+        type="submit"
+        className="chrome-surface rounded-full px-6 py-3 text-sm font-semibold ring-1 ring-black/10 transition-transform hover:-translate-y-0.5"
+      >
+        Solicitar demo
+      </button>
+    </form>
+  );
+}
+
 function Index() {
   return (
     <div className="min-h-screen bg-ink font-body text-slate-300">
@@ -465,12 +551,15 @@ function Index() {
             <a href="#proceso" className="transition-colors hover:text-white">
               Proceso
             </a>
-            <a href="#resultados" className="transition-colors hover:text-white">
-              Resultados
+            <a href="#faq" className="transition-colors hover:text-white">
+              Preguntas frecuentes
+            </a>
+            <a href="#contacto" className="transition-colors hover:text-white">
+              Contacto
             </a>
           </nav>
           <a
-            href="#cta"
+            href="#contacto"
             className="chrome-surface rounded-full px-4 py-2 text-sm font-medium transition-transform hover:-translate-y-0.5"
           >
             Agendar demo
@@ -495,7 +584,7 @@ function Index() {
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 <a
-                  href="#cta"
+                  href="#contacto"
                   className="chrome-surface group inline-flex items-center rounded-full py-3 pl-5 pr-4 text-sm font-semibold ring-1 ring-black/10 transition-transform hover:-translate-y-0.5"
                 >
                   <span className="grid size-7 place-items-center rounded-full bg-ink/10">
@@ -715,8 +804,36 @@ function Index() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section id="faq" className="bg-ink">
+        <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
+          <p className="font-display text-sm font-medium uppercase tracking-wide text-brand">
+            Preguntas frecuentes
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-white text-balance md:text-4xl">
+            Todo lo que solés preguntarnos
+          </h2>
+          <Accordion type="single" collapsible className="mt-10 w-full">
+            {FAQS.map((faq, i) => (
+              <AccordionItem
+                key={faq.question}
+                value={`faq-${i}`}
+                className="rounded-2xl border border-slate-800 bg-ink2 px-5 [&:not(:last-child)]:mb-3"
+              >
+                <AccordionTrigger className="text-left font-display text-base font-semibold text-white hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="font-body text-sm leading-relaxed text-slate-400">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
       {/* CONTACTO */}
-      <section id="cta" className="bg-ink">
+      <section id="contacto" className="bg-ink">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div
             className="rounded-[24px] p-10 text-center ring-1 ring-white/10 md:p-14"
@@ -731,26 +848,7 @@ function Index() {
             <p className="mx-auto mt-5 max-w-[46ch] text-pretty font-body text-base leading-relaxed text-slate-400 md:text-lg">
               Cuéntanos tu reto y te mostramos un flujo automatizado funcionando en 48 horas. Respondemos en menos de un día hábil.
             </p>
-            <form
-              className="mx-auto mt-9 flex max-w-md flex-col justify-center gap-3 sm:flex-row"
-               action="https://wa.me/5493434705750"
-              method="get"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <input
-                type="email"
-                name="text"
-                placeholder="tu@empresa.com"
-                className="flex-1 rounded-full bg-white/5 px-5 py-3 text-sm text-white ring-1 ring-white/15 placeholder:text-slate-500 focus:outline-none focus:ring-brand/60"
-              />
-              <button
-                type="submit"
-                className="chrome-surface rounded-full px-6 py-3 text-sm font-semibold ring-1 ring-black/10 transition-transform hover:-translate-y-0.5"
-              >
-                Solicitar demo
-              </button>
-            </form>
+            <DemoRequestForm />
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-body text-sm text-slate-400">
               <a
                  href="https://wa.me/5493434705750"
@@ -762,7 +860,9 @@ function Index() {
                  +54 9 343 470-5750
               </a>
               <a
-                 href="mailto:gama.70.maga@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=gama.70.maga@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 transition-colors hover:text-white"
               >
                  <Mail className="size-4 text-brand2" />
@@ -808,30 +908,40 @@ function Index() {
                 </a>
               </li>
               <li>
-                <a href="#resultados" className="transition-colors hover:text-white">
-                  Resultados
+                <a href="#faq" className="transition-colors hover:text-white">
+                  Preguntas frecuentes
                 </a>
               </li>
             </ul>
           </div>
           <div className="md:col-span-3">
             <p className="font-display text-xs font-semibold uppercase tracking-wide text-slate-400">
-              Compañía
+              Contacto
             </p>
             <ul className="mt-4 space-y-3 font-body text-sm text-slate-500">
               <li>
-                <a href="#" className="transition-colors hover:text-white">
-                  Nosotros
+                <a
+                  href="https://wa.me/5493434705750"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  WhatsApp +54 9 343 470-5750
                 </a>
               </li>
               <li>
-                <a href="#" className="transition-colors hover:text-white">
-                  Contacto
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=gama.70.maga@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  gama.70.maga@gmail.com
                 </a>
               </li>
               <li>
-                <a href="#" className="transition-colors hover:text-white">
-                  Blog
+                <a href="#contacto" className="transition-colors hover:text-white">
+                  Solicitar demo
                 </a>
               </li>
             </ul>
