@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Eye, Mail, MessageCircle, X } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import gaiaLogo from "@/assets/gaia-logo.png.asset.json";
 import ventasStockCover from "@/assets/projects/ventas-stock.png";
 import catalogoWhatsappCover from "@/assets/projects/catalogo-whatsapp.png";
-import agendaTurnosCover from "@/assets/projects/agenda-turnos.png";
+import agendaTurnosCover from "@/assets/projects/agenda-turnos.jpg";
 import tiendaWebCover from "@/assets/projects/tienda-web.png";
-import tarjetaDigitalCover from "@/assets/projects/tarjeta-digital.png";
+import tarjetaDigitalCover from "@/assets/projects/tarjeta-digital.jpg";
 import organizadorPersonalCover from "@/assets/projects/organizador-personal.png";
 import estudiabotCover from "@/assets/projects/estudiabot.png";
-import cotizadorCover from "@/assets/projects/cotizador.png.asset.json";
+import cotizadorCover from "@/assets/projects/cotizador.jpg";
+import finanzasCover from "@/assets/projects/finanzas.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -232,7 +239,7 @@ const PROJECTS: Project[] = [
     url: "https://cotizador-presupuestador.lovable.app",
     technologies: ["Cotización en vivo", "Reservas", "WhatsApp"],
     category: "Gestión & Negocios",
-    cover: cotizadorCover.url,
+    cover: cotizadorCover,
     guide: {
       title: "💡 Guía rápida para probar esta Demo",
       steps: [
@@ -241,6 +248,27 @@ const PROJECTS: Project[] = [
         "Elegí modalidad y turno: seleccioná el tipo de atención/plazo, una fecha en el calendario y una franja horaria.",
         "Revisá el resumen en vivo: observá cómo el total se calcula automáticamente.",
         "Probá el botón de WhatsApp: ingresá tu nombre y hacé clic en el botón verde final para ver cómo se autogenera el mensaje estructurado listo para enviar.",
+      ],
+    },
+  },
+  {
+    index: "09",
+    title: "Control de Gastos, Ingresos y Vencimientos",
+    description:
+      "Herramienta web interactiva para la gestión financiera mensual y anual, con soporte bimonetario (ARS/USD), seguimiento de vencimientos con alertas y registro de medios de pago.",
+    url: "https://glowing-gelato-ed8f68.netlify.app/",
+    technologies: ["HTML5", "CSS Grid", "JavaScript", "LocalStorage", "Responsive Design"],
+    category: "Productividad",
+    cover: finanzasCover,
+    guide: {
+      title: "\ud83d\udca1 Guía rápida para probar esta Demo",
+      steps: [
+        "Registro de ingresos: cargá tu sueldo principal y hasta tres ingresos extras, detallando el concepto y eligiendo la divisa (ARS o USD). Los importes se formatean solos.",
+        "Carga de gastos: elegí el mes, completá el nombre del gasto, la fecha límite en el calendario, la moneda y el monto, y tocá '+ Agregar Gasto'.",
+        "Alerta de vencimientos: si algo vence en el día de la fecha, verás una alerta roja arriba de todo con el concepto y el monto a liquidar.",
+        "Pagos y plataforma: hacé clic en la etiqueta 'Pendiente' (ámbar) para pasarla a 'Pagado' (verde) y habilitar el medio de pago y la plataforma utilizada.",
+        "Balance en vivo y cierre anual: mirá cómo se descuentan los pagos de tus ingresos, con importes discriminados en pesos y dólares, y el acumulado anual al pie.",
+        "Privacidad: todo se guarda localmente en tu navegador; podés cerrar la pestaña y tus datos siguen ahí al volver.",
       ],
     },
   },
