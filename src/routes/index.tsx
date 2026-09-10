@@ -686,6 +686,22 @@ function Index() {
         </div>
       </section>
 
+      {/* MANIFIESTO */}
+      <section className="relative overflow-hidden bg-ink2">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_50%,rgba(56,189,248,0.10),transparent_70%)]" />
+        <div className="relative mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
+          <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-brand">
+            Nuestro propósito
+          </p>
+          <blockquote className="mt-6 font-display text-2xl font-medium leading-[1.25] tracking-[-0.01em] text-white text-balance md:text-[2rem] md:leading-[1.2]">
+            <span className="text-brand/70">“</span>Las tareas del negocio tienen que seguir haciéndose; lo que cambia es que ya no tenés que hacerlas vos.<span className="text-brand/70">”</span>
+          </blockquote>
+          <p className="mx-auto mt-6 max-w-[52ch] font-body text-base leading-relaxed text-slate-400">
+            En GAIA encontrarás sistemas y automatizaciones a medida para que las tareas diarias funcionen solas y puedas enfocarte en lo que de verdad importa.
+          </p>
+        </div>
+      </section>
+
       {/* PROYECTOS */}
       <section id="servicios" className="bg-[#0b1220]">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
