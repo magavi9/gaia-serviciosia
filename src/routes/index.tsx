@@ -714,9 +714,9 @@ function Index() {
               <span className="chrome-gradient-text font-display text-5xl font-semibold leading-none tracking-[-0.03em] md:text-6xl">
                 04
               </span>
-              <h3 className="mt-4 font-display text-lg font-semibold text-white">Medimos</h3>
+              <h3 className="mt-4 font-display text-lg font-semibold text-white">Acompañamos</h3>
               <p className="mt-2 text-pretty font-body text-sm leading-relaxed text-slate-400">
-                Monitoreamos métricas y optimizamos el flujo cada semana.
+                Probamos la solución y acordamos el soporte y seguimiento según el proyecto.
               </p>
             </div>
           </div>
@@ -765,7 +765,7 @@ function Index() {
               Solicitá tu presupuesto o una demostración
             </h2>
             <p className="mx-auto mt-5 max-w-[46ch] text-pretty font-body text-base leading-relaxed text-slate-400 md:text-lg">
-              Cuéntanos tu reto y te mostramos un flujo automatizado funcionando en 48 horas. Respondemos en menos de un día hábil.
+              Contame qué necesitás y conversemos sobre una solución a medida. El alcance, los plazos y el presupuesto se acuerdan según cada proyecto.
             </p>
             <DemoRequestForm />
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-body text-sm text-slate-400">
@@ -788,9 +788,6 @@ function Index() {
                  gama.70.maga@gmail.com
               </a>
             </div>
-            <p className="mt-6 font-body text-xs text-slate-500">
-              Sin tarjeta. Respuesta en menos de un día hábil.
-            </p>
           </div>
         </div>
       </section>
