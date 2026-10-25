@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import gaiaLogo from "@/assets/gaia-logo.png.asset.json";
+import heroVentasStock from "@/assets/hero-ventas-stock.png.asset.json";
 import ventasStockCover from "@/assets/projects/ventas-stock.png";
 import catalogoWhatsappCover from "@/assets/projects/catalogo-whatsapp.png";
 import agendaTurnosCover from "@/assets/projects/agenda-turnos.jpg";
@@ -575,113 +576,64 @@ function Index() {
               <span className="inline-flex items-center gap-2 rounded-full bg-brand/10 px-3 py-1 text-xs font-medium text-brand ring-1 ring-brand/40">
                 <span className="size-1.5 rounded-full bg-brand"></span> Soluciones Digitales Inteligentes
               </span>
-              <h1 className="mt-6 font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-7xl">
-                Automatiza el trabajo repetitivo con IA
+              <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-white text-balance sm:text-5xl md:text-6xl">
+                Sistemas digitales y automatizaciones <span className="text-brand">a tu medida</span>
               </h1>
-              <p className="mt-6 max-w-[46ch] text-pretty font-body text-base leading-relaxed text-slate-400 md:text-lg">
-                GAIA conecta tus herramientas y deja que los procesos fluyan solos. Menos clics,
-                cero fricción y tu equipo enfocado en lo que importa.
+              <p className="mt-6 max-w-[52ch] text-pretty font-body text-base leading-relaxed text-slate-400 md:text-lg">
+                Creo aplicaciones, sistemas digitales, sitios web y automatizaciones para
+                emprendedores, comercios y negocios, según lo que necesitan organizar, gestionar o
+                mejorar.
               </p>
-              <div className="mt-9 flex flex-wrap items-center gap-4">
-                <a
-                  href="#contacto"
-                  className="chrome-surface group inline-flex items-center rounded-full py-3 pl-5 pr-4 text-sm font-semibold ring-1 ring-black/10 transition-transform hover:-translate-y-0.5"
-                >
-                  <span className="grid size-7 place-items-center rounded-full bg-ink/10">
-                    <span
-                      className="ml-0.5 h-0 w-0"
-                      style={{
-                        borderTop: "5px solid transparent",
-                        borderBottom: "5px solid transparent",
-                        borderLeft: "8px solid #041018",
-                      }}
-                    ></span>
-                  </span>
-                  Agendar demo
-                </a>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                 <a
                   href="#servicios"
-                  className="inline-flex items-center rounded-full py-3 px-5 text-sm font-medium text-slate-200 ring-1 ring-white/15 transition-colors hover:text-white hover:ring-white/40"
+                  className="chrome-surface inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold ring-1 ring-black/10 transition-transform hover:-translate-y-0.5"
                 >
-                  Ver cómo funciona
+                  Ver proyectos
+                </a>
+                <a
+                  href="https://wa.me/5493434705750"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-slate-200 ring-1 ring-white/15 transition-colors hover:text-white hover:ring-white/40"
+                >
+                  <MessageCircle className="size-4" /> Consultar por WhatsApp
                 </a>
               </div>
-                   
             </div>
 
-            {/* FLOW PANEL */}
+            {/* DEMO VENTAS Y STOCK */}
             <div className="md:col-span-5">
-              <div className="relative rounded-2xl bg-ink2 p-6 ring-1 ring-slate-800">
-                <div className="mb-5 flex items-center gap-2">
-                  <span className="size-2.5 rounded-full bg-brand"></span>
-                  <span className="size-2.5 rounded-full bg-brand2"></span>
-                  <span className="size-2.5 rounded-full bg-white/30"></span>
-                  <span className="ml-auto text-[11px] font-medium uppercase tracking-wide text-slate-500">
-                    flujo activo
-                  </span>
-                </div>
-
-                <div className="mb-4 rounded-[14px] bg-white/[0.03] p-5 ring-1 ring-white/10">
-                  <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">
-                    Entrada
+              <div className="rounded-2xl bg-ink2 p-3 ring-1 ring-slate-800 sm:p-4">
+                <a
+                  href="https://preeminent-pegasus-899cf1.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block overflow-hidden rounded-xl ring-1 ring-white/10"
+                >
+                  <img
+                    src={heroVentasStock.url}
+                    alt="Captura de la demo de Ventas y Stock: selección de productos y carrito de venta"
+                    className="block h-auto w-full"
+                    loading="eager"
+                  />
+                </a>
+                <div className="flex flex-col gap-3 px-1 pb-1 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="font-body text-sm text-slate-300">
+                    Registrás una venta y el stock se actualiza automáticamente
                   </p>
-                  <p className="mt-1 font-display text-base font-medium text-white">
-                    Nuevo pedido · CRM
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-center">
-                  <span className="h-4 w-px bg-gradient-to-b from-brand to-transparent"></span>
-                </div>
-                <div className="flex items-center gap-2 py-1">
-                  <span className="size-2 rounded-full bg-brand floaty"></span>
-                  <span
-                    className="size-2 rounded-full bg-brand2"
-                    style={{ animationDelay: ".3s" }}
-                  ></span>
-                  <span
-                    className="size-2 rounded-full bg-white/40"
-                    style={{ animationDelay: ".6s" }}
-                  ></span>
-                </div>
-
-                <div className="mb-4 rounded-[14px] bg-brand/5 p-5 ring-1 ring-brand/30">
-                  <p className="text-[11px] font-medium uppercase tracking-wide text-brand">
-                    Procesado por IA
-                  </p>
-                  <p className="mt-1 font-display text-base font-medium text-white">
-                    Valida datos y asigna agente
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-center">
-                  <span className="h-4 w-px bg-gradient-to-b from-brand2 to-transparent"></span>
-                </div>
-                <div className="flex items-center gap-2 py-1">
-                  <span
-                    className="size-2 rounded-full bg-brand2 floaty"
-                    style={{ animationDelay: ".2s" }}
-                  ></span>
-                  <span
-                    className="size-2 rounded-full bg-brand"
-                    style={{ animationDelay: ".5s" }}
-                  ></span>
-                  <span
-                    className="size-2 rounded-full bg-white/40"
-                    style={{ animationDelay: ".8s" }}
-                  ></span>
-                </div>
-
-                <div className="rounded-[14px] bg-white/[0.03] p-5 ring-1 ring-white/10">
-                  <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">
-                    Salida
-                  </p>
-                  <p className="mt-1 font-display text-base font-medium text-white">
-                    Orden lista · 12s
-                  </p>
+                  <a
+                    href="https://preeminent-pegasus-899cf1.netlify.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="chrome-surface inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold"
+                  >
+                    Probar demo <ArrowUpRight className="size-4" />
+                  </a>
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
