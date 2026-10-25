@@ -772,56 +772,8 @@ function Index() {
         </div>
       </section>
 
-      {/* RESULTADOS */}
-      <section id="resultados" className="bg-[#0b1220]">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <div>
-            <p className="font-display text-sm font-medium uppercase tracking-wide text-brand">
-              Resultados
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.02em] text-white text-balance md:text-4xl">
-              Números que reflejan el ahorro real
-            </h2>
-            <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
-              <div>
-                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-6xl">
-                  85%
-                </p>
-                <p className="mt-3 font-body text-sm text-slate-400">
-                  menos trabajo manual en operaciones clave
-                </p>
-              </div>
-              <div>
-                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-6xl">
-                  4.2×
-                </p>
-                <p className="mt-3 font-body text-sm text-slate-400">
-                  más rápido el ciclo de cada proceso
-                </p>
-              </div>
-              <div>
-                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-6xl">
-                  30k
-                </p>
-                <p className="mt-3 font-body text-sm text-slate-400">
-                  tareas automatizadas cada mes
-                </p>
-              </div>
-              <div>
-                <p className="font-display text-5xl font-semibold leading-none tracking-[-0.03em] text-white md:text-6xl">
-                  99.9%
-                </p>
-                <p className="mt-3 font-body text-sm text-slate-400">
-                  de disponibilidad en producción
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
-      <section id="faq" className="bg-ink">
+      <section id="faq" className="bg-[#0b1220]">
         <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
           <p className="font-display text-sm font-medium uppercase tracking-wide text-brand">
             Preguntas frecuentes
